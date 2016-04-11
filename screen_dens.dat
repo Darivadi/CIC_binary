@@ -1,0 +1,50 @@
+  * The file './parameters_file.dat' has been loaded!
+############################################################
+Reading snapshot /home/dvalencia/snaps_SW/Box_400_512_150
+----------------------------------------
+Reading snapshot with:
+----------------------------------------
+Type 0 has Npart=           0 NpartTotal=           0 with mass       0.00000000
+Type 1 has Npart=   134217728 NpartTotal=   134217728 with mass       3.41453791
+Type 2 has Npart=           0 NpartTotal=           0 with mass       0.00000000
+Type 3 has Npart=           0 NpartTotal=           0 with mass       0.00000000
+Type 4 has Npart=           0 NpartTotal=           0 with mass       0.00000000
+Type 5 has Npart=           0 NpartTotal=           0 with mass       0.00000000
+ There is a total 134217728 particles in the snapshot
+
+----------------------------------------
+ * Frame's Time...       0.99999996
+ * Redshift...       0.00000004
+ * Flagsfr... 0
+ * Flagfed... 0
+ * Flagcool... 0
+ * numfiles... 1
+ * Boxsize...     400.00000000
+ * Omega0...       0.25800000
+ * OmageLa...       0.74200000
+ * Hubbleparam...       0.72000000
+-----------------------------------------------
+Cosmological parameters:
+OmegaM0=0.258000 OmegaL0=0.742000 redshift=0.000000 HubbleParam=0.720000
+-----------------------------------------------
+Simulation parameters:
+NGRID=256 NGRID3=16777216 Particle_Mass=3.414538 NpTotal=134217728.000000 rhoMean=7.160805 L=400.000000 volCell=3.814697 dx=1.562500 Filename=/home/dvalencia/snaps_SW/Box_400_512_150
+-----------------------------------------------
+Particles located in the grid
+-----------------------------------------------
+Total momentum from particles in x:   -0.003839
+Total momentum from particles in y:   -0.002462
+Total momentum from particles in z:    0.001164
+Mean velocity from particles in x:   -0.001124
+Mean velocity from particles in y:   -0.000721
+Mean velocity from particles in z:    0.000341
+Normalization for momentum: aSF*Ngrid^3/NTotalParts=0.125000
+Total number of particles: 134217728
+Mass CIC = 458291520.486776
+Mass Simulation = 458291520.486719
+Total momentum from cells in x: -18862.11861306
+Total momentum from cells in y: -12095.21350811
+Total momentum from cells in z:   5718.11021276
+Mean velocity from cells in x:      0.00000000
+Mean velocity from cells in y:      0.00000000
+Mean velocity from cells in z:      0.00000000
