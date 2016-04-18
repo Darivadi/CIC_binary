@@ -1,5 +1,5 @@
 # 1 "CIC.c"
-# 1 "/home/dvalencia/SWcode/CIC_original/CIC_def//"
+# 1 "/home/darivadi/Documents/University/Master/Courses/Investigation_III/Codes_last_version/CIC_code//"
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 "/usr/include/stdc-predef.h" 1 3 4
@@ -26,8 +26,8 @@
 
 
 
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h" 1 3 4
-# 212 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h" 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h" 1 3 4
+# 212 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h" 3 4
 typedef long unsigned int size_t;
 # 34 "/usr/include/stdio.h" 2 3 4
 
@@ -151,7 +151,7 @@ typedef struct _IO_FILE __FILE;
 # 31 "/usr/include/libio.h" 3 4
 # 1 "/usr/include/_G_config.h" 1 3 4
 # 15 "/usr/include/_G_config.h" 3 4
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h" 1 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h" 1 3 4
 # 16 "/usr/include/_G_config.h" 2 3 4
 
 
@@ -185,8 +185,8 @@ typedef struct
 } _G_fpos64_t;
 # 32 "/usr/include/libio.h" 2 3 4
 # 49 "/usr/include/libio.h" 3 4
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stdarg.h" 1 3 4
-# 40 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stdarg.h" 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h" 1 3 4
+# 40 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h" 3 4
 typedef __builtin_va_list __gnuc_va_list;
 # 50 "/usr/include/libio.h" 2 3 4
 # 144 "/usr/include/libio.h" 3 4
@@ -838,8 +838,8 @@ extern void funlockfile (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__)
 # 2 "CIC.c" 2
 # 1 "/usr/include/stdlib.h" 1 3 4
 # 32 "/usr/include/stdlib.h" 3 4
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h" 1 3 4
-# 324 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h" 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h" 1 3 4
+# 324 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h" 3 4
 typedef int wchar_t;
 # 33 "/usr/include/stdlib.h" 2 3 4
 
@@ -1137,7 +1137,7 @@ typedef __clockid_t clockid_t;
 typedef __timer_t timer_t;
 # 133 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
 # 146 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h" 1 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h" 1 3 4
 # 147 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
 
 
@@ -1620,7 +1620,7 @@ extern void cfree (void *__ptr) __attribute__ ((__nothrow__ , __leaf__));
 
 # 1 "/usr/include/alloca.h" 1 3 4
 # 24 "/usr/include/alloca.h" 3 4
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h" 1 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h" 1 3 4
 # 25 "/usr/include/alloca.h" 2 3 4
 
 
@@ -2859,8 +2859,8 @@ extern int matherr (struct exception *__exc);
 # 4 "CIC.c" 2
 # 1 "/usr/include/malloc.h" 1 3 4
 # 23 "/usr/include/malloc.h" 3 4
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h" 1 3 4
-# 147 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h" 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h" 1 3 4
+# 147 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h" 3 4
 typedef long int ptrdiff_t;
 # 24 "/usr/include/malloc.h" 2 3 4
 # 35 "/usr/include/malloc.h" 3 4
@@ -2983,7 +2983,7 @@ extern void __malloc_check_init (void) __attribute__ ((__nothrow__ , __leaf__)) 
 
 
 
-# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h" 1 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h" 1 3 4
 # 33 "/usr/include/string.h" 2 3 4
 # 44 "/usr/include/string.h" 3 4
 
@@ -3551,11 +3551,12 @@ int read_parameters( char filename[] )
 
     return 0;
 }
-# 124 "readWrite.h"
+# 73 "readWrite.h"
 int write_binary(void)
 {
   int i, nread;
   double pos_aux[3];
+  double momentum_aux[3];
   FILE *outFile=((void *)0);
   outFile = fopen("./../Processed_data/CIC_DenCon_field_256.bin", "w");
 
@@ -3568,15 +3569,17 @@ int write_binary(void)
 
   for(i=0; i<GV.NGRID3; i++ )
     {
-      fwrite(&i, sizeof(int), 1, outFile);
-      fwrite(&cells[i].Np_cell, sizeof(int), 1, outFile);
-
 
       pos_aux[0] = cells[i].pos[0];
       pos_aux[1] = cells[i].pos[1];
       pos_aux[2] = cells[i].pos[2];
 
       fwrite(&pos_aux[0], sizeof(double), 3, outFile);
+
+
+      fwrite(&cells[i].momentum_p[0], sizeof(double), 3, outFile);
+
+
       fwrite(&cells[i].denCon, sizeof(double), 1, outFile);
     }
 
@@ -3643,7 +3646,13 @@ int main(){
   GV.dx,
   GV.FILENAME);
   printf("-----------------------------------------------\n");
-# 95 "CIC.c"
+
+
+
+
+
+
+
   cells = (struct Cell *)calloc( GV.NGRID3, sizeof( struct Cell) );
 
 
@@ -3712,7 +3721,7 @@ int main(){
 
 
  Np = cells[index].Np_cell;
-# 173 "CIC.c"
+# 159 "CIC.c"
  for(l=0; l<Np; l++){
 
    idPart = cells[index].id_part[l];
@@ -3726,7 +3735,7 @@ int main(){
    vxp = part[idPart].velx;
    vyp = part[idPart].vely;
    vzp = part[idPart].velz;
-# 201 "CIC.c"
+# 187 "CIC.c"
    for(ii=-1; ii<=1; ii++){
      for(jj=-1; jj<=1; jj++){
        for(kk=-1; kk<=1; kk++){
@@ -3759,7 +3768,7 @@ int main(){
    }
 
  }
-# 244 "CIC.c"
+# 230 "CIC.c"
       }
     }
   }
@@ -3774,7 +3783,7 @@ int main(){
       for(k=0; k<GV.NGRID; k++){
 
  index = (k)+GV.NGRID*((j)+GV.NGRID*(i));
-# 268 "CIC.c"
+# 254 "CIC.c"
  cells[index].momentum_p[0] = norm_factor * cells[index].momentum_p[0];
  cells[index].momentum_p[1] = norm_factor * cells[index].momentum_p[1];
  cells[index].momentum_p[2] = norm_factor * cells[index].momentum_p[2];
@@ -3782,7 +3791,10 @@ int main(){
     }
   }
   printf("Normalization for momentum: aSF*Ngrid^3/NTotalParts=%lf\n", norm_factor);
-# 345 "CIC.c"
+
+
+
+
   sumaMom[0] = sumaMom[1] = sumaMom[2] = 0.0;
   sumaVel[0] = sumaVel[1] = sumaVel[2] = 0.0;
 

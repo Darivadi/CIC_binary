@@ -72,20 +72,6 @@ int main(){
 	 GV.FILENAME);
   printf("-----------------------------------------------\n");
 
-  /*  
-  outfile = fopen("fourth_data.dat", "w");
-  for(i=0; i<GV.NpTot; i++)
-    {
-      if(part[i].posx <= 100.0 && part[i].posy <= 100.0 && part[i].posz <= 100.0)
-	{
-	  fprintf(outfile, "%10d %16.8lf %16.8lf %16.8lf %16.8lf %16.8lf %16.8lf\n",
-		 i, part[i].posx, part[i].posy, part[i].posz,
-		 part[i].velx, part[i].vely, part[i].velz);
-	}
-    }//for i
-  fclose(outfile);
-  exit(0);
-  */
 
   //////////////////////////////
   //* FROM PARTICLES TO GRID *//
@@ -274,74 +260,8 @@ int main(){
   printf("Normalization for momentum: aSF*Ngrid^3/NTotalParts=%lf\n", norm_factor);
   
 
-  //--- Saving output file ---
-#ifdef ASCIIDATA
-  outfile = fopen(strcat(GV.FILENAME,"_DenCon_CIC_512.dat"),"w");
-  fprintf(outfile,
-	  "%s%9s %12s %12s %12s %12s %12s %12s %12s %12s %12s\n", 
-	  "#", "Index", "NumberOfPars",
-	  "x", "y", "z",
-	  "px", "py", "pz",
-	  "rho", "DenCon");
-  
-  sumaMom[0] = sumaMom[1] = sumaMom[2] = 0.0;
-  sumaVel[0] = sumaVel[1] = sumaVel[2] = 0.0;
-  
-  for(i=0; i<GV.NGRID; i++){
-    for(j=0; j<GV.NGRID; j++){
-      for(k=0; k<GV.NGRID; k++){
-	
-	index = INDEX(i,j,k); // C-order
-	
-	/* coordinates of the cell (in the center of) */
-	xc = GV.dx * (0.5 + i);
-	yc = GV.dx * (0.5 + j);
-	zc = GV.dx * (0.5 + k);
-	
-	/* Calculating the final density in the cell */
-	totalMass += cells[index].rho; /* We have not divided by the volume yet. 
-					  This is still the mass */
-	cells[index].rho = cells[index].rho / GV.volCell; //This is the actual density
-
-	/* Verification of number of particles and momentum conservation */
-	sumaPart += cells[index].Np_cell;
-	sumaVel[0] += cells[index].velx;
-	sumaVel[1] += cells[index].vely;
-	sumaVel[2] += cells[index].velz;
-	sumaMom[0] += cells[index].momentum_p[0];
-	sumaMom[1] += cells[index].momentum_p[1];
-	sumaMom[2] += cells[index].momentum_p[2];     
-      
-	
-	/* Calculating the final density contrast in the cell */
-	cells[index].denCon = (cells[index].rho/GV.rhoMean) - 1.0;
-	
-	/* Writting in the file  */
-	/*
-	fprintf(outfile,
-		"%10d %10d  %12.6lf %12.6lf %12.6lf %12.6lf %12.6lf %12.6lf %12.6lf %12.6lf\n", 
-		index, cells[index].Np_cell,
-		xc, yc, zc, 
-		cells[index].velx, cells[index].vely, cells[index].velz, 
-		cells[index].rho, cells[index].denCon);
-	*/
-	
-	fprintf(outfile,
-		"%10d %10d  %12.6lf %12.6lf %12.6lf %12.6lf %12.6lf %12.6lf %12.6lf %12.6lf\n", 
-		index, cells[index].Np_cell,
-		xc, yc, zc, 
-		cells[index].momentum_p[0], cells[index].momentum_p[1], cells[index].momentum_p[2], 
-		cells[index].rho, cells[index].denCon);
-	
-      }//for k
-    }// for j
-  }// for i
-  fclose(outfile);
-#endif
 
   /*+++++ Writing binary file +++++*/
-#ifdef BINARYDATA
-
   sumaMom[0] = sumaMom[1] = sumaMom[2] = 0.0;
   sumaVel[0] = sumaVel[1] = sumaVel[2] = 0.0;
     
@@ -382,7 +302,8 @@ int main(){
     }// for i
 
   write_binary();
-#endif
+
+
 	        
   printf("Total number of particles:%10d\n", sumaPart);
   printf("Mass CIC = %lf\n",totMassCIC);

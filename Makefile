@@ -6,7 +6,8 @@ PROGRAM = CIC
 
 $(PROGRAM):
 	$(CC) -c -save-temps $@.c $(CFLAGS)
-	$(CC) $@.o -lgsl -lgslcblas -lm -lfftw3 $(LFLAGS) -o $@.x
+	#$(CC) $@.o -lgsl -lgslcblas -lm -lfftw3 $(LFLAGS) -o $@.x
+	$(CC) $@.o -lm $(LFLAGS) -o $@.x
 
 clean:
 	rm -rf *.out
