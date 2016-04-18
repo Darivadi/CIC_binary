@@ -33,9 +33,11 @@ int read_parameters( char filename[] )
     //Loading the file
     printf("Filename: %s\n", filename);
     file = fopen( filename, "r" );
-    if( file==NULL ){
+    if( file==NULL )
+      {
 	printf( "  * The file '%s' doesn't exist!\n", filename );
-	return 1;}
+	return 1;
+      }
     fclose(file);
     
     //Converting to plain text

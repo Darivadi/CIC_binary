@@ -3524,9 +3524,11 @@ int read_parameters( char filename[] )
 
     printf("Filename: %s\n", filename);
     file = fopen( filename, "r" );
-    if( file==((void *)0) ){
+    if( file==((void *)0) )
+      {
  printf( "  * The file '%s' doesn't exist!\n", filename );
- return 1;}
+ return 1;
+      }
     fclose(file);
 
 
@@ -3552,7 +3554,7 @@ int read_parameters( char filename[] )
 
     return 0;
 }
-# 74 "readWrite.h"
+# 76 "readWrite.h"
 int write_binary(void)
 {
   int i, nread;
@@ -3589,7 +3591,8 @@ int write_binary(void)
 }
 # 15 "CIC.c" 2
 
-int main(){
+int main(int argc, char *argv[])
+{
 
   int i, j, k, l, index, indexaux, Np, idPart;
   int ii, jj, kk;
@@ -3597,7 +3600,8 @@ int main(){
   double xp, yp, zp, vxp, vyp, vzp;
   double Window_fn;
   double norm_factor;
-  FILE *outfile=((void *)0), *outfile1=((void *)0), *outfile2=((void *)0);
+  char *infile=((void *)0);
+
 
   double totalMass=0.0, totMassCIC=0.0;
   int sumaPart = 0;
@@ -3609,7 +3613,15 @@ int main(){
 
 
 
-  read_parameters("./parameters_file.dat");
+  if(argc < 2)
+    {
+      printf("Error: Incomplete number of parameters. Execute as follows:\n");
+      printf("%s Parameters_file\n", argv[0]);
+      exit(0);
+    }
+
+  infile = argv[1];
+  read_parameters(infile);
   GV.NpTot = readGADGETBinaryFile();
 
 
@@ -3722,7 +3734,7 @@ int main(){
 
 
  Np = cells[index].Np_cell;
-# 159 "CIC.c"
+# 169 "CIC.c"
  for(l=0; l<Np; l++){
 
    idPart = cells[index].id_part[l];
@@ -3736,7 +3748,7 @@ int main(){
    vxp = part[idPart].velx;
    vyp = part[idPart].vely;
    vzp = part[idPart].velz;
-# 187 "CIC.c"
+# 197 "CIC.c"
    for(ii=-1; ii<=1; ii++){
      for(jj=-1; jj<=1; jj++){
        for(kk=-1; kk<=1; kk++){
@@ -3769,7 +3781,7 @@ int main(){
    }
 
  }
-# 230 "CIC.c"
+# 240 "CIC.c"
       }
     }
   }
@@ -3784,7 +3796,7 @@ int main(){
       for(k=0; k<GV.NGRID; k++){
 
  index = (k)+GV.NGRID*((j)+GV.NGRID*(i));
-# 254 "CIC.c"
+# 264 "CIC.c"
  cells[index].momentum_p[0] = norm_factor * cells[index].momentum_p[0];
  cells[index].momentum_p[1] = norm_factor * cells[index].momentum_p[1];
  cells[index].momentum_p[2] = norm_factor * cells[index].momentum_p[2];

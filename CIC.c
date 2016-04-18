@@ -13,7 +13,8 @@
 #include "functions.h"
 #include "readWrite.h"
 
-int main(){
+int main(int argc, char *argv[])
+{
   
   int i, j, k, l, index, indexaux, Np, idPart;
   int ii, jj, kk;
@@ -21,7 +22,8 @@ int main(){
   double xp, yp, zp, vxp, vyp, vzp; // Positions and velocities of the particles
   double Window_fn; //Window function
   double norm_factor; //Normalization factor for the momentum computation
-  FILE *outfile=NULL, *outfile1=NULL, *outfile2=NULL;
+  char *infile=NULL;
+  
   //--- For verifications ---
   double totalMass=0.0, totMassCIC=0.0;
   int sumaPart = 0;
@@ -33,7 +35,15 @@ int main(){
   //////////////////////////////////
   //* READING GADGET BINARY FILE *//
   //////////////////////////////////
-  read_parameters("./parameters_file.dat");
+  if(argc < 2)
+    {
+      printf("Error: Incomplete number of parameters. Execute as follows:\n");
+      printf("%s Parameters_file\n", argv[0]);
+      exit(0);
+    }//if   
+  
+  infile     = argv[1];             // Parameters file
+  read_parameters(infile);
   GV.NpTot = readGADGETBinaryFile();
 
   /* Cosmological parameters */  
