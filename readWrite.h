@@ -31,6 +31,7 @@ int read_parameters( char filename[] )
     FILE *file;
 
     //Loading the file
+    printf("Filename: %s\n", filename);
     file = fopen( filename, "r" );
     if( file==NULL ){
 	printf( "  * The file '%s' doesn't exist!\n", filename );

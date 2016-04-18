@@ -3522,6 +3522,7 @@ int read_parameters( char filename[] )
     FILE *file;
 
 
+    printf("Filename: %s\n", filename);
     file = fopen( filename, "r" );
     if( file==((void *)0) ){
  printf( "  * The file '%s' doesn't exist!\n", filename );
@@ -3551,7 +3552,7 @@ int read_parameters( char filename[] )
 
     return 0;
 }
-# 73 "readWrite.h"
+# 74 "readWrite.h"
 int write_binary(void)
 {
   int i, nread;
