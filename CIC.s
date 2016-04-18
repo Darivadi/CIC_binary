@@ -977,7 +977,7 @@ mod:
 	.section	.rodata
 	.align 8
 .LC24:
-	.string	"grep -v \"#\" %s | grep -v \"^$\" | gawk -F\"=\" '{print $2}' > %s.dump"
+	.string	"grep -v \"#\" %s | grep -v \"^$\" | awk -F\"=\" '{print $2}' > %s.dump"
 	.text
 	.globl	conf2dump
 	.type	conf2dump, @function
@@ -999,7 +999,7 @@ conf2dump:
 	movq	%fs:40, %rax
 	movq	%rax, -24(%rbp)
 	xorl	%eax, %eax
-	.loc 2 12 0
+	.loc 2 17 0
 	movq	-136(%rbp), %rcx
 	movq	-136(%rbp), %rdx
 	leaq	-128(%rbp), %rax
@@ -1007,13 +1007,13 @@ conf2dump:
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf
-	.loc 2 15 0
+	.loc 2 20 0
 	leaq	-128(%rbp), %rax
 	movq	%rax, %rdi
 	call	system
-	.loc 2 17 0
+	.loc 2 22 0
 	movl	$0, %eax
-	.loc 2 18 0
+	.loc 2 23 0
 	movq	-24(%rbp), %rbx
 	xorq	%fs:40, %rbx
 	je	.L54
@@ -1049,7 +1049,7 @@ conf2dump:
 	.type	read_parameters, @function
 read_parameters:
 .LFB8:
-	.loc 2 29 0
+	.loc 2 34 0
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -1058,95 +1058,95 @@ read_parameters:
 	.cfi_def_cfa_register 6
 	subq	$256, %rsp
 	movq	%rdi, -248(%rbp)
-	.loc 2 29 0
+	.loc 2 34 0
 	movq	%fs:40, %rax
 	movq	%rax, -8(%rbp)
 	xorl	%eax, %eax
-	.loc 2 34 0
+	.loc 2 39 0
 	movq	-248(%rbp), %rax
 	movq	%rax, %rsi
 	movl	$.LC25, %edi
 	movl	$0, %eax
 	call	printf
-	.loc 2 35 0
+	.loc 2 40 0
 	movq	-248(%rbp), %rax
 	movl	$.LC3, %esi
 	movq	%rax, %rdi
 	call	fopen
 	movq	%rax, -232(%rbp)
-	.loc 2 36 0
+	.loc 2 41 0
 	cmpq	$0, -232(%rbp)
 	jne	.L56
-	.loc 2 38 0
+	.loc 2 43 0
 	movq	-248(%rbp), %rax
 	movq	%rax, %rsi
 	movl	$.LC26, %edi
 	movl	$0, %eax
 	call	printf
-	.loc 2 39 0
+	.loc 2 44 0
 	movl	$1, %eax
 	jmp	.L58
 .L56:
-	.loc 2 41 0
+	.loc 2 46 0
 	movq	-232(%rbp), %rax
 	movq	%rax, %rdi
 	call	fclose
-	.loc 2 44 0
+	.loc 2 49 0
 	movq	-248(%rbp), %rax
 	movq	%rax, %rdi
 	call	conf2dump
-	.loc 2 45 0
+	.loc 2 50 0
 	movq	-248(%rbp), %rdx
 	leaq	-112(%rbp), %rax
 	movl	$.LC27, %esi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf
-	.loc 2 46 0
+	.loc 2 51 0
 	leaq	-112(%rbp), %rax
 	movl	$.LC3, %esi
 	movq	%rax, %rdi
 	call	fopen
 	movq	%rax, -232(%rbp)
-	.loc 2 54 0
+	.loc 2 59 0
 	movq	-232(%rbp), %rax
 	movl	$GV, %edx
 	movl	$.LC28, %esi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	__isoc99_fscanf
-	.loc 2 55 0
+	.loc 2 60 0
 	movq	-232(%rbp), %rax
 	movl	$GV+64, %edx
 	movl	$.LC29, %esi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	__isoc99_fscanf
-	.loc 2 57 0
+	.loc 2 62 0
 	movq	-232(%rbp), %rax
 	movq	%rax, %rdi
 	call	fclose
-	.loc 2 59 0
+	.loc 2 64 0
 	movq	-248(%rbp), %rax
 	movq	%rax, %rsi
 	movl	$.LC30, %edi
 	movl	$0, %eax
 	call	printf
-	.loc 2 61 0
+	.loc 2 66 0
 	movq	-248(%rbp), %rdx
 	leaq	-224(%rbp), %rax
 	movl	$.LC31, %esi
 	movq	%rax, %rdi
 	movl	$0, %eax
 	call	sprintf
-	.loc 2 62 0
+	.loc 2 67 0
 	leaq	-224(%rbp), %rax
 	movq	%rax, %rdi
 	call	system
-	.loc 2 64 0
+	.loc 2 69 0
 	movl	$0, %eax
 .L58:
-	.loc 2 65 0
+	.loc 2 70 0
 	movq	-8(%rbp), %rcx
 	xorq	%fs:40, %rcx
 	je	.L59
@@ -1169,7 +1169,7 @@ read_parameters:
 	.type	write_binary, @function
 write_binary:
 .LFB9:
-	.loc 2 77 0
+	.loc 2 82 0
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
@@ -1177,53 +1177,53 @@ write_binary:
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	subq	$48, %rsp
-	.loc 2 81 0
+	.loc 2 86 0
 	movq	$0, -40(%rbp)
-	.loc 2 82 0
+	.loc 2 87 0
 	movl	$.LC32, %esi
 	movl	$.LC33, %edi
 	call	fopen
 	movq	%rax, -40(%rbp)
-	.loc 2 85 0
+	.loc 2 90 0
 	movq	-40(%rbp), %rax
 	movq	%rax, %rcx
 	movl	$1, %edx
 	movl	$8, %esi
 	movl	$GV+8, %edi
 	call	fwrite
-	.loc 2 86 0
+	.loc 2 91 0
 	movq	-40(%rbp), %rax
 	movq	%rax, %rcx
 	movl	$1, %edx
 	movl	$8, %esi
 	movl	$GV+1064, %edi
 	call	fwrite
-	.loc 2 87 0
+	.loc 2 92 0
 	movq	-40(%rbp), %rax
 	movq	%rax, %rcx
 	movl	$1, %edx
 	movl	$8, %esi
 	movl	$GV+1072, %edi
 	call	fwrite
-	.loc 2 88 0
+	.loc 2 93 0
 	movq	-40(%rbp), %rax
 	movq	%rax, %rcx
 	movl	$1, %edx
 	movl	$8, %esi
 	movl	$GV+1080, %edi
 	call	fwrite
-	.loc 2 89 0
+	.loc 2 94 0
 	movq	-40(%rbp), %rax
 	movq	%rax, %rcx
 	movl	$1, %edx
 	movl	$8, %esi
 	movl	$GV+1096, %edi
 	call	fwrite
-	.loc 2 91 0
+	.loc 2 96 0
 	movl	$0, -44(%rbp)
 	jmp	.L61
 .L62:
-	.loc 2 94 0 discriminator 2
+	.loc 2 99 0 discriminator 2
 	movq	cells(%rip), %rdx
 	movl	-44(%rbp), %eax
 	cltq
@@ -1234,7 +1234,7 @@ write_binary:
 	addq	%rdx, %rax
 	movq	88(%rax), %rax
 	movq	%rax, -32(%rbp)
-	.loc 2 95 0 discriminator 2
+	.loc 2 100 0 discriminator 2
 	movq	cells(%rip), %rdx
 	movl	-44(%rbp), %eax
 	cltq
@@ -1245,7 +1245,7 @@ write_binary:
 	addq	%rdx, %rax
 	movq	96(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 2 96 0 discriminator 2
+	.loc 2 101 0 discriminator 2
 	movq	cells(%rip), %rdx
 	movl	-44(%rbp), %eax
 	cltq
@@ -1256,7 +1256,7 @@ write_binary:
 	addq	%rdx, %rax
 	movq	104(%rax), %rax
 	movq	%rax, -16(%rbp)
-	.loc 2 98 0 discriminator 2
+	.loc 2 103 0 discriminator 2
 	movq	-40(%rbp), %rdx
 	leaq	-32(%rbp), %rax
 	movq	%rdx, %rcx
@@ -1264,7 +1264,7 @@ write_binary:
 	movl	$8, %esi
 	movq	%rax, %rdi
 	call	fwrite
-	.loc 2 101 0 discriminator 2
+	.loc 2 106 0 discriminator 2
 	movq	cells(%rip), %rdx
 	movl	-44(%rbp), %eax
 	cltq
@@ -1279,7 +1279,7 @@ write_binary:
 	movl	$3, %edx
 	movl	$8, %esi
 	call	fwrite
-	.loc 2 104 0 discriminator 2
+	.loc 2 109 0 discriminator 2
 	movq	cells(%rip), %rdx
 	movl	-44(%rbp), %eax
 	cltq
@@ -1294,20 +1294,20 @@ write_binary:
 	movl	$1, %edx
 	movl	$8, %esi
 	call	fwrite
-	.loc 2 91 0 discriminator 2
+	.loc 2 96 0 discriminator 2
 	addl	$1, -44(%rbp)
 .L61:
-	.loc 2 91 0 is_stmt 0 discriminator 1
+	.loc 2 96 0 is_stmt 0 discriminator 1
 	movl	GV+24(%rip), %eax
 	cmpl	-44(%rbp), %eax
 	jg	.L62
-	.loc 2 107 0 is_stmt 1
+	.loc 2 112 0 is_stmt 1
 	movq	-40(%rbp), %rax
 	movq	%rax, %rdi
 	call	fclose
-	.loc 2 108 0
+	.loc 2 113 0
 	movl	$0, %eax
-	.loc 2 109 0
+	.loc 2 114 0
 	leave
 	.cfi_def_cfa 7, 8
 	ret
@@ -3775,7 +3775,7 @@ main:
 	.uleb128 0x12
 	.long	.LASF106
 	.byte	0x2
-	.byte	0x1c
+	.byte	0x21
 	.long	0x62
 	.quad	.LFB8
 	.quad	.LFE8-.LFB8
@@ -3785,7 +3785,7 @@ main:
 	.uleb128 0x13
 	.long	.LASF105
 	.byte	0x2
-	.byte	0x1c
+	.byte	0x21
 	.long	0x8f
 	.uleb128 0x3
 	.byte	0x91
@@ -3793,7 +3793,7 @@ main:
 	.uleb128 0x16
 	.string	"cmd"
 	.byte	0x2
-	.byte	0x1e
+	.byte	0x23
 	.long	0x81b
 	.uleb128 0x3
 	.byte	0x91
@@ -3801,7 +3801,7 @@ main:
 	.uleb128 0x14
 	.long	.LASF107
 	.byte	0x2
-	.byte	0x1e
+	.byte	0x23
 	.long	0x81b
 	.uleb128 0x3
 	.byte	0x91
@@ -3809,7 +3809,7 @@ main:
 	.uleb128 0x14
 	.long	.LASF108
 	.byte	0x2
-	.byte	0x1f
+	.byte	0x24
 	.long	0x65c
 	.uleb128 0x3
 	.byte	0x91
@@ -3818,7 +3818,7 @@ main:
 	.uleb128 0x12
 	.long	.LASF109
 	.byte	0x2
-	.byte	0x4c
+	.byte	0x51
 	.long	0x62
 	.quad	.LFB9
 	.quad	.LFE9-.LFB9
@@ -3828,7 +3828,7 @@ main:
 	.uleb128 0x16
 	.string	"i"
 	.byte	0x2
-	.byte	0x4e
+	.byte	0x53
 	.long	0x62
 	.uleb128 0x2
 	.byte	0x91
@@ -3836,12 +3836,12 @@ main:
 	.uleb128 0x1e
 	.long	.LASF94
 	.byte	0x2
-	.byte	0x4e
+	.byte	0x53
 	.long	0x62
 	.uleb128 0x14
 	.long	.LASF110
 	.byte	0x2
-	.byte	0x4f
+	.byte	0x54
 	.long	0x553
 	.uleb128 0x2
 	.byte	0x91
@@ -3849,7 +3849,7 @@ main:
 	.uleb128 0x14
 	.long	.LASF111
 	.byte	0x2
-	.byte	0x50
+	.byte	0x55
 	.long	0x553
 	.uleb128 0x2
 	.byte	0x91
@@ -3857,7 +3857,7 @@ main:
 	.uleb128 0x14
 	.long	.LASF112
 	.byte	0x2
-	.byte	0x51
+	.byte	0x56
 	.long	0x65c
 	.uleb128 0x2
 	.byte	0x91

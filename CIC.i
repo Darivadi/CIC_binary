@@ -3508,14 +3508,19 @@ int mod(int a, int b){
 int conf2dump( char filename[] )
 {
     char cmd[100];
+
+
+
+
+
     sprintf( cmd,
-    "grep -v \"#\" %s | grep -v \"^$\" | gawk -F\"=\" '{print $2}' > %s.dump",
- filename, filename );
+      "grep -v \"#\" %s | grep -v \"^$\" | awk -F\"=\" '{print $2}' > %s.dump",
+      filename, filename );
     system( cmd );
 
     return 0;
 }
-# 28 "readWrite.h"
+# 33 "readWrite.h"
 int read_parameters( char filename[] )
 {
     char cmd[100], filenamedump[100];
@@ -3554,7 +3559,7 @@ int read_parameters( char filename[] )
 
     return 0;
 }
-# 76 "readWrite.h"
+# 81 "readWrite.h"
 int write_binary(void)
 {
   int i, nread;

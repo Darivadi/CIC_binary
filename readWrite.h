@@ -9,9 +9,14 @@
 int conf2dump( char filename[] )
 {
     char cmd[100];
-    sprintf( cmd, 
+    /*
+      sprintf( cmd, 
     "grep -v \"#\" %s | grep -v \"^$\" | gawk -F\"=\" '{print $2}' > %s.dump", 
 	filename, filename );
+    */
+    sprintf( cmd, 
+	     "grep -v \"#\" %s | grep -v \"^$\" | awk -F\"=\" '{print $2}' > %s.dump", 
+	     filename, filename );
     system( cmd );
 
     return 0;
