@@ -88,7 +88,8 @@ int write_binary(void)
   fwrite(&GV.OmegaL0, sizeof(double), 1, outFile);  //Cosmological constant density parameter
   fwrite(&GV.zRS, sizeof(double), 1, outFile);  //Redshift
   fwrite(&GV.HubbleParam, sizeof(double), 1, outFile);  //Hubble parameter
-  
+
+  printf("Ntotalgrid=%15d\n", GV.NGRID3);
   for(i=0; i<GV.NGRID3; i++ )
     {     
       /*----- Positions -----*/
@@ -102,7 +103,8 @@ int write_binary(void)
       momentum_aux[X] = cells[i].momentum_p[X];
       momentum_aux[Y] = cells[i].momentum_p[Y];
       momentum_aux[Z] = cells[i].momentum_p[Z];
-      fwrite(&momentum_aux[X], sizeof(double), 3, outFile);
+
+      fwrite(&momentum_aux[0], sizeof(double), 3, outFile);
 
       /*----- Density contrast -----*/
       fwrite(&cells[i].denCon, sizeof(double), 1, outFile);

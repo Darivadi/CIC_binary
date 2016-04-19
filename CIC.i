@@ -3577,6 +3577,7 @@ int write_binary(void)
   fwrite(&GV.zRS, sizeof(double), 1, outFile);
   fwrite(&GV.HubbleParam, sizeof(double), 1, outFile);
 
+  printf("Ntotalgrid=%15d\n", GV.NGRID3);
   for(i=0; i<GV.NGRID3; i++ )
     {
 
@@ -3590,6 +3591,7 @@ int write_binary(void)
       momentum_aux[0] = cells[i].momentum_p[0];
       momentum_aux[1] = cells[i].momentum_p[1];
       momentum_aux[2] = cells[i].momentum_p[2];
+
       fwrite(&momentum_aux[0], sizeof(double), 3, outFile);
 
 
