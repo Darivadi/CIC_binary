@@ -3816,6 +3816,7 @@ int main(int argc, char *argv[])
 
   sumaMom[0] = sumaMom[1] = sumaMom[2] = 0.0;
   sumaVel[0] = sumaVel[1] = sumaVel[2] = 0.0;
+  printf("Computing positions and Density contrast\n");
 
   for(i=0; i<GV.NGRID; i++)
     {
@@ -3853,6 +3854,7 @@ int main(int argc, char *argv[])
  }
     }
 
+  printf("Saving data\n");
   write_binary();
 
 
