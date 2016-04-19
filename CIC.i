@@ -3507,7 +3507,7 @@ int mod(int a, int b){
 # 9 "readWrite.h"
 int conf2dump( char filename[] )
 {
-    char cmd[100];
+    char cmd[1000];
 
 
 
@@ -3537,6 +3537,7 @@ int read_parameters( char filename[] )
     fclose(file);
 
 
+    printf("Converting to plain text\n");
     conf2dump( filename );
     sprintf( filenamedump, "%s.dump", filename );
     file = fopen( filenamedump, "r" );
@@ -3559,7 +3560,7 @@ int read_parameters( char filename[] )
 
     return 0;
 }
-# 81 "readWrite.h"
+# 82 "readWrite.h"
 int write_binary(void)
 {
   int i, nread;

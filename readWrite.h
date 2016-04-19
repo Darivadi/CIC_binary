@@ -8,7 +8,7 @@
 
 int conf2dump( char filename[] )
 {
-    char cmd[100];
+    char cmd[1000];
     /*
       sprintf( cmd, 
     "grep -v \"#\" %s | grep -v \"^$\" | gawk -F\"=\" '{print $2}' > %s.dump", 
@@ -46,6 +46,7 @@ int read_parameters( char filename[] )
     fclose(file);
     
     //Converting to plain text
+    printf("Converting to plain text\n");
     conf2dump( filename );
     sprintf( filenamedump, "%s.dump", filename );
     file = fopen( filenamedump, "r" );
