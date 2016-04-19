@@ -3504,7 +3504,8 @@ int mod(int a, int b){
 }
 # 14 "CIC.c" 2
 # 1 "readWrite.h" 1
-# 9 "readWrite.h"
+
+
 int conf2dump( char filename[] )
 {
     char cmd[1000];
@@ -3520,10 +3521,10 @@ int conf2dump( char filename[] )
 
     return 0;
 }
-# 33 "readWrite.h"
+# 28 "readWrite.h"
 int read_parameters( char filename[] )
 {
-    char cmd[100], filenamedump[100];
+    char cmd[1000], filenamedump[1000];
     FILE *file;
 
 
@@ -3560,7 +3561,7 @@ int read_parameters( char filename[] )
 
     return 0;
 }
-# 82 "readWrite.h"
+# 77 "readWrite.h"
 int write_binary(void)
 {
   int i, nread;
@@ -3586,7 +3587,10 @@ int write_binary(void)
       fwrite(&pos_aux[0], sizeof(double), 3, outFile);
 
 
-      fwrite(&cells[i].momentum_p[0], sizeof(double), 3, outFile);
+      momentum_aux[0] = cells[i].momentum_p[0];
+      momentum_aux[1] = cells[i].momentum_p[1];
+      momentum_aux[2] = cells[i].momentum_p[2];
+      fwrite(&momentum_aux[0], sizeof(double), 3, outFile);
 
 
       fwrite(&cells[i].denCon, sizeof(double), 1, outFile);
@@ -3607,7 +3611,7 @@ int main(int argc, char *argv[])
   double Window_fn;
   double norm_factor;
   char *infile=((void *)0);
-
+  FILE *pf = ((void *)0);
 
   double totalMass=0.0, totMassCIC=0.0;
   int sumaPart = 0;
@@ -3818,6 +3822,7 @@ int main(int argc, char *argv[])
   sumaVel[0] = sumaVel[1] = sumaVel[2] = 0.0;
   printf("Computing positions and Density contrast\n");
 
+
   for(i=0; i<GV.NGRID; i++)
     {
       for(j=0; j<GV.NGRID; j++)
@@ -3850,9 +3855,11 @@ int main(int argc, char *argv[])
 
 
        cells[index].denCon = (cells[index].rho/GV.rhoMean) - 1.0;
+
      }
  }
     }
+
 
   printf("Saving data\n");
   write_binary();

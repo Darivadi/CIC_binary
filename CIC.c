@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
   double Window_fn; //Window function
   double norm_factor; //Normalization factor for the momentum computation
   char *infile=NULL;
-  
+  FILE *pf = NULL;
   //--- For verifications ---
   double totalMass=0.0, totMassCIC=0.0;
   int sumaPart = 0;
@@ -276,6 +276,7 @@ int main(int argc, char *argv[])
   sumaVel[0] = sumaVel[1] = sumaVel[2] = 0.0;
   printf("Computing positions and Density contrast\n");
 
+  //pf = fopen("./../../Processed_data/CIC_ASCII_256.dat", "w");
   for(i=0; i<GV.NGRID; i++)
     {
       for(j=0; j<GV.NGRID; j++)
@@ -308,9 +309,11 @@ int main(int argc, char *argv[])
 
 	      /*----- Calculating the final density contrast in the cell -----*/
 	      cells[index].denCon = (cells[index].rho/GV.rhoMean) - 1.0;
+	      //fprintf(pf, "%16.8lf %16.8lf\n", cells[index].pos[X], cells[index].denCon);
 	    }//for k
 	}// for j
     }// for i
+  //fclose(pf);
 
   printf("Saving data\n");
   write_binary();

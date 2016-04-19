@@ -1,11 +1,5 @@
-//#include "allvars.h"
-
-/*********************************/
-//	Save and read data
-/*********************************/
 
 //Convert data file text in plain text 
-
 int conf2dump( char filename[] )
 {
     char cmd[1000];
@@ -26,13 +20,14 @@ int conf2dump( char filename[] )
 
 
 
+
 /*************************************************************/
 
 			//Read file with and load information  
 
 int read_parameters( char filename[] )
 {
-    char cmd[100], filenamedump[100];
+    char cmd[1000], filenamedump[1000];
     FILE *file;
 
     //Loading the file
@@ -58,7 +53,7 @@ int read_parameters( char filename[] )
 	i++;}
     */
     fscanf(file, "%d", &GV.NGRID);
-    fscanf(file, "%s", GV.FILENAME);    
+    fscanf(file, "%s", GV.FILENAME); 
 
     fclose( file );
     
@@ -104,7 +99,10 @@ int write_binary(void)
       fwrite(&pos_aux[0], sizeof(double), 3, outFile);
 
       /*----- Momentum -----*/
-      fwrite(&cells[i].momentum_p[0], sizeof(double), 3, outFile);
+      momentum_aux[X] = cells[i].momentum_p[X];
+      momentum_aux[Y] = cells[i].momentum_p[Y];
+      momentum_aux[Z] = cells[i].momentum_p[Z];
+      fwrite(&momentum_aux[X], sizeof(double), 3, outFile);
 
       /*----- Density contrast -----*/
       fwrite(&cells[i].denCon, sizeof(double), 1, outFile);
