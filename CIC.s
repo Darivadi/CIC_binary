@@ -1168,7 +1168,7 @@ read_parameters:
 	.string	"w"
 	.align 8
 .LC34:
-	.string	"./../Processed_data/CIC_DenCon_field_256.bin"
+	.string	"./../../Processed_data/CIC_DenCon_field_256.bin"
 	.text
 	.globl	write_binary
 	.type	write_binary, @function
