@@ -14,8 +14,7 @@
 #include "readWrite.h"
 
 int main(int argc, char *argv[])
-{
-  
+{  
   int i, j, k, l, index, indexaux, Np, idPart;
   int ii, jj, kk;
   double xc, yc, zc; // Positions of the cells
@@ -296,8 +295,7 @@ int main(int argc, char *argv[])
                                                  This is still the mass */
 
 	      cells[index].rho = cells[index].rho / GV.volCell; //This is the actual density
-
-
+	      
 	      /*----- Verification of number of particles -----*/
 	      sumaPart += cells[index].Np_cell;	      
 	      sumaVel[0] += cells[index].velx;
@@ -310,6 +308,14 @@ int main(int argc, char *argv[])
 	      /*----- Calculating the final density contrast in the cell -----*/
 	      cells[index].denCon = (cells[index].rho/GV.rhoMean) - 1.0;
 	      //fprintf(pf, "%16.8lf %16.8lf\n", cells[index].pos[X], cells[index].denCon);
+
+	      /*----- Experiment with a velocity contrast taking the mean velocity of
+		particles in each direction -----*/
+	      cells[index].momentum_p[X] = (cells[index].momentum_p[X] / sumaVelPart[X]) - 1.0;	      
+	      cells[index].momentum_p[Y] = (cells[index].momentum_p[Y] / sumaVelPart[Y]) - 1.0;	      
+	      cells[index].momentum_p[Z] = (cells[index].momentum_p[Z] / sumaVelPart[Z]) - 1.0;	
+
+
 	    }//for k
 	}// for j
     }// for i
