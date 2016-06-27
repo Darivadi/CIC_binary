@@ -3776,16 +3776,18 @@ int main(int argc, char *argv[])
 
   Window_fn = W(xc-xp, yc-yp, zc-zp, GV.dx);
   cells[indexaux].rho += GV.mass * Window_fn;
-# 224 "CIC.c"
-  vmod = sqrt(vxp*vxp + vyp*vyp + vzp*vzp);
-  cells[indexaux].momentum_p[0] += vxp * Window_fn / vmod;
-  cells[indexaux].momentum_p[1] += vyp * Window_fn / vmod;
-  cells[indexaux].momentum_p[2] += vzp * Window_fn / vmod;
 
 
 
 
 
+
+
+  cells[indexaux].momentum_p[0] += vxp * Window_fn;
+  cells[indexaux].momentum_p[1] += vyp * Window_fn;
+  cells[indexaux].momentum_p[2] += vzp * Window_fn;
+  cells[indexaux].W_count += Window_fn;
+# 233 "CIC.c"
        }
      }
    }

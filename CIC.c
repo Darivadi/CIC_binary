@@ -214,18 +214,18 @@ int main(int argc, char *argv[])
 		//cells[indexaux].momentum_p[1] += GV.mass * vyp * Window_fn;
 		//cells[indexaux].momentum_p[2] += GV.mass * vzp * Window_fn;
 
-		/* THIS IS THE ONE I HAVE WORK WITH
+		/* THIS IS THE ONE I HAVE WORK WITH */
 		cells[indexaux].momentum_p[0] += vxp * Window_fn;
 		cells[indexaux].momentum_p[1] += vyp * Window_fn;
 		cells[indexaux].momentum_p[2] += vzp * Window_fn;
 		cells[indexaux].W_count += Window_fn;
-		*/
 		
+		/*
 		vmod = sqrt(vxp*vxp + vyp*vyp + vzp*vzp);
 		cells[indexaux].momentum_p[0] += vxp * Window_fn / vmod;
 		cells[indexaux].momentum_p[1] += vyp * Window_fn / vmod;
 		cells[indexaux].momentum_p[2] += vzp * Window_fn / vmod;
-
+		*/
 		//cells[index].velx += vxp * Window_fn;
 		//cells[index].vely += vyp * Window_fn;
 		//cells[index].velz += vzp * Window_fn;
