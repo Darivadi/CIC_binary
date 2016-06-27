@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
   //--- For verifications ---
   double totalMass=0.0, totMassCIC=0.0;
   int sumaPart = 0;
-  double sumaMom[3], sumaVel[3];
+  double sumaMom[3], sumaVel[3], sumaVelModule;
   double sumaMomPart[3], sumaVelPart[3];
   double auxMom[3], auxVel[3];
   
@@ -138,6 +138,9 @@ int main(int argc, char *argv[])
   printf("Mean velocity from particles in x:%12.6lf\n", sumaVelPart[0]);
   printf("Mean velocity from particles in y:%12.6lf\n", sumaVelPart[1]);
   printf("Mean velocity from particles in z:%12.6lf\n", sumaVelPart[2]);
+  
+  sumaVelModule = sqrt(sumaVelPart[X]*sumaVelPart[X] + sumaVelPart[Y]*sumaVelPart[Y] + sumaVelPart[Z]*sumaVelPart[Z]);
+  printf("Total mean velocity module is %12.6lf\n", sumaVelModule);
 
   
   /* Distribution scheme  */
@@ -311,10 +314,15 @@ int main(int argc, char *argv[])
 
 	      /*----- Experiment with a velocity contrast taking the mean velocity of
 		particles in each direction -----*/
+	      /*
 	      cells[index].momentum_p[X] = (cells[index].momentum_p[X] / sumaVelPart[X]) - 1.0;	      
 	      cells[index].momentum_p[Y] = (cells[index].momentum_p[Y] / sumaVelPart[Y]) - 1.0;	      
 	      cells[index].momentum_p[Z] = (cells[index].momentum_p[Z] / sumaVelPart[Z]) - 1.0;	
-
+	      */
+	      cells[index].momentum_p[X] = (cells[index].momentum_p[X] / sumaVelModule) - 1.0;	      
+	      cells[index].momentum_p[Y] = (cells[index].momentum_p[Y] / sumaVelModule) - 1.0;	      
+	      cells[index].momentum_p[Z] = (cells[index].momentum_p[Z] / sumaVelModule) - 1.0;	
+	      
 
 	    }//for k
 	}// for j
