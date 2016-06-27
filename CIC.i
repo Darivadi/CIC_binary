@@ -3568,7 +3568,8 @@ int write_binary(void)
   double pos_aux[3];
   double momentum_aux[3];
   FILE *outFile=((void *)0);
-  outFile = fopen("./../../Processed_data/CIC_DenCon_field_256.bin", "w");
+
+  outFile = fopen("./../../Processed_data/CIC_vel_field_test256.bin", "w");
 
 
   fwrite(&GV.L, sizeof(double), 1, outFile);
@@ -3605,11 +3606,10 @@ int write_binary(void)
 
 int main(int argc, char *argv[])
 {
-
   int i, j, k, l, index, indexaux, Np, idPart;
   int ii, jj, kk;
   double xc, yc, zc;
-  double xp, yp, zp, vxp, vyp, vzp;
+  double xp, yp, zp, vxp, vyp, vzp, vmod;
   double Window_fn;
   double norm_factor;
   char *infile=((void *)0);
@@ -3617,7 +3617,7 @@ int main(int argc, char *argv[])
 
   double totalMass=0.0, totMassCIC=0.0;
   int sumaPart = 0;
-  double sumaMom[3], sumaVel[3];
+  double sumaMom[3], sumaVel[3], sumaVelModule;
   double sumaMomPart[3], sumaVelPart[3];
   double auxMom[3], auxVel[3];
 
@@ -3730,6 +3730,9 @@ int main(int argc, char *argv[])
   printf("Mean velocity from particles in y:%12.6lf\n", sumaVelPart[1]);
   printf("Mean velocity from particles in z:%12.6lf\n", sumaVelPart[2]);
 
+  sumaVelModule = sqrt(sumaVelPart[0]*sumaVelPart[0] + sumaVelPart[1]*sumaVelPart[1] + sumaVelPart[2]*sumaVelPart[2]);
+  printf("Total mean velocity module is %12.6lf\n", sumaVelModule);
+
 
 
   for(i=0; i<GV.NGRID; i++){
@@ -3746,7 +3749,7 @@ int main(int argc, char *argv[])
 
 
  Np = cells[index].Np_cell;
-# 169 "CIC.c"
+# 171 "CIC.c"
  for(l=0; l<Np; l++){
 
    idPart = cells[index].id_part[l];
@@ -3760,7 +3763,7 @@ int main(int argc, char *argv[])
    vxp = part[idPart].velx;
    vyp = part[idPart].vely;
    vzp = part[idPart].velz;
-# 197 "CIC.c"
+# 199 "CIC.c"
    for(ii=-1; ii<=1; ii++){
      for(jj=-1; jj<=1; jj++){
        for(kk=-1; kk<=1; kk++){
@@ -3773,16 +3776,11 @@ int main(int argc, char *argv[])
 
   Window_fn = W(xc-xp, yc-yp, zc-zp, GV.dx);
   cells[indexaux].rho += GV.mass * Window_fn;
-
-
-
-
-
-
-  cells[indexaux].momentum_p[0] += vxp * Window_fn;
-  cells[indexaux].momentum_p[1] += vyp * Window_fn;
-  cells[indexaux].momentum_p[2] += vzp * Window_fn;
-  cells[indexaux].W_count += Window_fn;
+# 224 "CIC.c"
+  vmod = sqrt(vxp*vxp + vyp*vyp + vzp*vzp);
+  cells[indexaux].momentum_p[0] += vxp * Window_fn / vmod;
+  cells[indexaux].momentum_p[1] += vyp * Window_fn / vmod;
+  cells[indexaux].momentum_p[2] += vzp * Window_fn / vmod;
 
 
 
@@ -3793,7 +3791,7 @@ int main(int argc, char *argv[])
    }
 
  }
-# 240 "CIC.c"
+# 249 "CIC.c"
       }
     }
   }
@@ -3808,7 +3806,7 @@ int main(int argc, char *argv[])
       for(k=0; k<GV.NGRID; k++){
 
  index = (k)+GV.NGRID*((j)+GV.NGRID*(i));
-# 264 "CIC.c"
+# 273 "CIC.c"
  cells[index].momentum_p[0] = norm_factor * cells[index].momentum_p[0];
  cells[index].momentum_p[1] = norm_factor * cells[index].momentum_p[1];
  cells[index].momentum_p[2] = norm_factor * cells[index].momentum_p[2];
@@ -3846,7 +3844,6 @@ int main(int argc, char *argv[])
        cells[index].rho = cells[index].rho / GV.volCell;
 
 
-
        sumaPart += cells[index].Np_cell;
        sumaVel[0] += cells[index].velx;
        sumaVel[1] += cells[index].vely;
@@ -3857,7 +3854,7 @@ int main(int argc, char *argv[])
 
 
        cells[index].denCon = (cells[index].rho/GV.rhoMean) - 1.0;
-
+# 334 "CIC.c"
      }
  }
     }

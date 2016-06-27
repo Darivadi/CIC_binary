@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
   int i, j, k, l, index, indexaux, Np, idPart;
   int ii, jj, kk;
   double xc, yc, zc; // Positions of the cells
-  double xp, yp, zp, vxp, vyp, vzp; // Positions and velocities of the particles
+  double xp, yp, zp, vxp, vyp, vzp, vmod; // Positions and velocities of the particles
   double Window_fn; //Window function
   double norm_factor; //Normalization factor for the momentum computation
   char *infile=NULL;
@@ -213,11 +213,18 @@ int main(int argc, char *argv[])
 		//cells[indexaux].momentum_p[0] += GV.mass * vxp * Window_fn;
 		//cells[indexaux].momentum_p[1] += GV.mass * vyp * Window_fn;
 		//cells[indexaux].momentum_p[2] += GV.mass * vzp * Window_fn;
-		
+
+		/* THIS IS THE ONE I HAVE WORK WITH
 		cells[indexaux].momentum_p[0] += vxp * Window_fn;
 		cells[indexaux].momentum_p[1] += vyp * Window_fn;
 		cells[indexaux].momentum_p[2] += vzp * Window_fn;
 		cells[indexaux].W_count += Window_fn;
+		*/
+		
+		vmod = sqrt(vxp*vxp + vyp*vyp + vzp*vzp);
+		cells[indexaux].momentum_p[0] += vxp * Window_fn / vmod;
+		cells[indexaux].momentum_p[1] += vyp * Window_fn / vmod;
+		cells[indexaux].momentum_p[2] += vzp * Window_fn / vmod;
 
 		//cells[index].velx += vxp * Window_fn;
 		//cells[index].vely += vyp * Window_fn;
@@ -318,11 +325,11 @@ int main(int argc, char *argv[])
 	      cells[index].momentum_p[X] = (cells[index].momentum_p[X] / sumaVelPart[X]) - 1.0;	      
 	      cells[index].momentum_p[Y] = (cells[index].momentum_p[Y] / sumaVelPart[Y]) - 1.0;	      
 	      cells[index].momentum_p[Z] = (cells[index].momentum_p[Z] / sumaVelPart[Z]) - 1.0;	
-	      */
+	      
 	      cells[index].momentum_p[X] = (cells[index].momentum_p[X] / sumaVelModule) - 1.0;	      
 	      cells[index].momentum_p[Y] = (cells[index].momentum_p[Y] / sumaVelModule) - 1.0;	      
 	      cells[index].momentum_p[Z] = (cells[index].momentum_p[Z] / sumaVelModule) - 1.0;	
-	      
+	      */
 
 	    }//for k
 	}// for j
