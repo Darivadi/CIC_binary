@@ -86,22 +86,26 @@ int main(int argc, char *argv[])
   //* FROM PARTICLES TO GRID *//
   //////////////////////////////
 
+  /*+++++ First, a test with velocities of some particles with position in z between 0 and 40 Mpc +++++*/
+  write_binary_parts();
+
   /* Array of structure Cell, size NGRID^3 */
   cells = (struct Cell *)calloc( GV.NGRID3, sizeof( struct Cell) );
 
   // Setting values to zero at the beggining
-  for(i=0; i<GV.NGRID3; i++){
-    cells[i].Np_cell = 0;
-    cells[i].denCon = 0.0;
-    cells[i].rho = 0.0;
-    cells[i].velx = 0.0;
-    cells[i].vely = 0.0;
-    cells[i].velz = 0.0;
-    cells[i].momentum_p[0] = 0.0;
-    cells[i].momentum_p[1] = 0.0;
-    cells[i].momentum_p[2] = 0.0;
-    cells[i].W_count = 0.0;
-  }//for i
+  for(i=0; i<GV.NGRID3; i++)
+    {
+      cells[i].Np_cell = 0;
+      cells[i].denCon = 0.0;
+      cells[i].rho = 0.0;
+      cells[i].velx = 0.0;
+      cells[i].vely = 0.0;
+      cells[i].velz = 0.0;
+      cells[i].momentum_p[0] = 0.0;
+      cells[i].momentum_p[1] = 0.0;
+      cells[i].momentum_p[2] = 0.0;
+      cells[i].W_count = 0.0;
+    }//for i
   
   /* Locating cells */
   for(i=0; i<GV.NpTot; i++){

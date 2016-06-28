@@ -114,3 +114,50 @@ int write_binary(void)
   fclose(outFile);
   return 0;
 }//write_binary
+
+
+/****************************************************************************************************          
+NAME: write_binary_parts                                                                                            
+FUNCTION: Writes binary data file with positions and velocities of some particles to make a test.
+INPUT: none                                                                                                 
+RETURN: 0                                                                                                    
+****************************************************************************************************/
+
+int write_binary_parts(void)
+{
+  int i, nread;
+  double pos_aux[3];
+  double momentum_aux[3];
+  FILE *outFile=NULL;
+
+  outFile = fopen("./../../Processed_data/Particles_pos_vels_test.bin", "w");
+  
+
+  for(i=0; i<GV.NpTot; i++ )
+    {     
+      
+      if(part[i].posz <= 40.0)
+	{
+	  /*----- Positions -----*/
+	  pos_aux[X] = part[i].posx;
+	  pos_aux[X] = part[i].posx;
+	  pos_aux[X] = part[i].posx;
+	  
+	  fwrite(&pos_aux[0], sizeof(double), 3, outFile);
+	  
+	  momentum_aux[X] = part[i].velx;
+	  momentum_aux[Y] = part[i].vely;
+	  momentum_aux[Z] = part[i].velz;
+
+	  /*----- Momentum -----*/	  
+	  fwrite(&momentum_aux[0], sizeof(double), 3, outFile);	  
+
+	}//if
+      
+    }//for i
+  
+  fclose(outFile);
+  return 0;
+}//write_binary_parts
+
+
