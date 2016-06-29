@@ -1357,6 +1357,12 @@ write_binary:
 	.align 8
 .LC36:
 	.string	"./../../Processed_data/Particles_pos_vels_test.bin"
+	.align 8
+.LC38:
+	.string	"????????????????????????????????????????????????????????????????"
+	.align 8
+.LC39:
+	.string	"Number of particles for velocity test: %16d\n"
 	.text
 	.globl	write_binary_parts
 	.type	write_binary_parts, @function
@@ -1372,18 +1378,20 @@ write_binary_parts:
 	subq	$80, %rsp
 	.loc 2 131 0
 	movq	$0, -72(%rbp)
-	.loc 2 133 0
+	.loc 2 132 0
+	movl	$0, -76(%rbp)
+	.loc 2 134 0
 	movl	$.LC33, %esi
 	movl	$.LC36, %edi
 	call	fopen
 	movq	%rax, -72(%rbp)
-	.loc 2 136 0
-	movl	$0, -76(%rbp)
+	.loc 2 137 0
+	movl	$0, -80(%rbp)
 	jmp	.L65
 .L68:
-	.loc 2 139 0
+	.loc 2 140 0
 	movq	part(%rip), %rax
-	movl	-76(%rbp), %edx
+	movl	-80(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
@@ -1391,17 +1399,9 @@ write_binary_parts:
 	movsd	.LC37(%rip), %xmm0
 	ucomisd	%xmm1, %xmm0
 	jb	.L66
-	.loc 2 142 0
-	movq	part(%rip), %rax
-	movl	-76(%rbp), %edx
-	movslq	%edx, %rdx
-	salq	$6, %rdx
-	addq	%rdx, %rax
-	movq	8(%rax), %rax
-	movq	%rax, -64(%rbp)
 	.loc 2 143 0
 	movq	part(%rip), %rax
-	movl	-76(%rbp), %edx
+	movl	-80(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
@@ -1409,13 +1409,21 @@ write_binary_parts:
 	movq	%rax, -64(%rbp)
 	.loc 2 144 0
 	movq	part(%rip), %rax
-	movl	-76(%rbp), %edx
+	movl	-80(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
-	movq	8(%rax), %rax
-	movq	%rax, -64(%rbp)
-	.loc 2 146 0
+	movq	16(%rax), %rax
+	movq	%rax, -56(%rbp)
+	.loc 2 145 0
+	movq	part(%rip), %rax
+	movl	-80(%rbp), %edx
+	movslq	%edx, %rdx
+	salq	$6, %rdx
+	addq	%rdx, %rax
+	movq	24(%rax), %rax
+	movq	%rax, -48(%rbp)
+	.loc 2 147 0
 	movq	-72(%rbp), %rdx
 	leaq	-64(%rbp), %rax
 	movq	%rdx, %rcx
@@ -1423,31 +1431,31 @@ write_binary_parts:
 	movl	$8, %esi
 	movq	%rax, %rdi
 	call	fwrite
-	.loc 2 148 0
+	.loc 2 149 0
 	movq	part(%rip), %rax
-	movl	-76(%rbp), %edx
+	movl	-80(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movq	32(%rax), %rax
 	movq	%rax, -32(%rbp)
-	.loc 2 149 0
+	.loc 2 150 0
 	movq	part(%rip), %rax
-	movl	-76(%rbp), %edx
+	movl	-80(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movq	40(%rax), %rax
 	movq	%rax, -24(%rbp)
-	.loc 2 150 0
+	.loc 2 151 0
 	movq	part(%rip), %rax
-	movl	-76(%rbp), %edx
+	movl	-80(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movq	48(%rax), %rax
 	movq	%rax, -16(%rbp)
-	.loc 2 153 0
+	.loc 2 154 0
 	movq	-72(%rbp), %rdx
 	leaq	-32(%rbp), %rax
 	movq	%rdx, %rcx
@@ -1455,22 +1463,36 @@ write_binary_parts:
 	movl	$8, %esi
 	movq	%rax, %rdi
 	call	fwrite
-.L66:
-	.loc 2 136 0
+	.loc 2 155 0
 	addl	$1, -76(%rbp)
+.L66:
+	.loc 2 137 0
+	addl	$1, -80(%rbp)
 .L65:
-	.loc 2 136 0 is_stmt 0 discriminator 1
-	cvtsi2sd	-76(%rbp), %xmm0
+	.loc 2 137 0 is_stmt 0 discriminator 1
+	cvtsi2sd	-80(%rbp), %xmm0
 	movsd	GV+16(%rip), %xmm1
 	ucomisd	%xmm0, %xmm1
 	ja	.L68
-	.loc 2 159 0 is_stmt 1
+	.loc 2 160 0 is_stmt 1
+	movl	$.LC38, %edi
+	call	puts
+	.loc 2 161 0
+	movl	-76(%rbp), %eax
+	movl	%eax, %esi
+	movl	$.LC39, %edi
+	movl	$0, %eax
+	call	printf
+	.loc 2 162 0
+	movl	$.LC38, %edi
+	call	puts
+	.loc 2 164 0
 	movq	-72(%rbp), %rax
 	movq	%rax, %rdi
 	call	fclose
-	.loc 2 160 0
+	.loc 2 165 0
 	movl	$0, %eax
-	.loc 2 161 0
+	.loc 2 166 0
 	leave
 	.cfi_def_cfa 7, 8
 	ret
@@ -1479,78 +1501,78 @@ write_binary_parts:
 	.size	write_binary_parts, .-write_binary_parts
 	.section	.rodata
 	.align 8
-.LC38:
+.LC40:
 	.string	"Error: Incomplete number of parameters. Execute as follows:"
-.LC39:
+.LC41:
 	.string	"%s Parameters_file\n"
 	.align 8
-.LC41:
+.LC43:
 	.string	"-----------------------------------------------"
-.LC42:
+.LC44:
 	.string	"Cosmological parameters:"
 	.align 8
-.LC43:
+.LC45:
 	.string	"OmegaM0=%lf OmegaL0=%lf redshift=%lf HubbleParam=%lf\n"
-.LC44:
+.LC46:
 	.string	"Simulation parameters:"
 	.align 8
-.LC45:
+.LC47:
 	.string	"NGRID=%d NGRID3=%d Particle_Mass=%lf NpTotal=%lf rhoMean=%lf L=%lf volCell=%lf dx=%lf Filename=%s\n"
-.LC46:
+.LC48:
 	.string	"Particles located in the grid"
 	.align 8
-.LC47:
+.LC49:
 	.string	"Total momentum from particles in x:%12.6lf\n"
 	.align 8
-.LC48:
+.LC50:
 	.string	"Total momentum from particles in y:%12.6lf\n"
 	.align 8
-.LC49:
+.LC51:
 	.string	"Total momentum from particles in z:%12.6lf\n"
 	.align 8
-.LC50:
+.LC52:
 	.string	"Mean velocity from particles in x:%12.6lf\n"
 	.align 8
-.LC51:
+.LC53:
 	.string	"Mean velocity from particles in y:%12.6lf\n"
 	.align 8
-.LC52:
+.LC54:
 	.string	"Mean velocity from particles in z:%12.6lf\n"
 	.align 8
-.LC53:
+.LC55:
 	.string	"Total mean velocity module is %12.6lf\n"
 	.align 8
-.LC55:
+.LC57:
 	.string	"Normalization for momentum: aSF*Ngrid^3/NTotalParts=%lf\n"
 	.align 8
-.LC56:
+.LC58:
 	.string	"Computing positions and Density contrast"
-.LC57:
+.LC59:
 	.string	"Saving data"
 	.align 8
-.LC58:
-	.string	"Total number of particles:%10d\n"
-.LC59:
-	.string	"Mass CIC = %lf\n"
 .LC60:
+	.string	"Total number of particles:%10d\n"
+.LC61:
+	.string	"Mass CIC = %lf\n"
+.LC62:
 	.string	"Mass Simulation = %lf\n"
 	.align 8
-.LC61:
+.LC63:
 	.string	"Total momentum from cells in x:%16.8lf\n"
 	.align 8
-.LC62:
+.LC64:
 	.string	"Total momentum from cells in y:%16.8lf\n"
 	.align 8
-.LC63:
+.LC65:
 	.string	"Total momentum from cells in z:%16.8lf\n"
 	.align 8
-.LC64:
+.LC66:
 	.string	"Mean velocity from cells in x:%16.8lf\n"
 	.align 8
-.LC65:
+.LC67:
 	.string	"Mean velocity from cells in y:%16.8lf\n"
 	.align 8
-.LC66:
+.LC68:
 	.string	"Mean velocity from cells in z:%16.8lf\n"
 	.text
 	.globl	main
@@ -1591,13 +1613,13 @@ main:
 	cmpl	$1, -340(%rbp)
 	jg	.L72
 	.loc 3 39 0
-	movl	$.LC38, %edi
+	movl	$.LC40, %edi
 	call	puts
 	.loc 3 40 0
 	movq	-352(%rbp), %rax
 	movq	(%rax), %rax
 	movq	%rax, %rsi
-	movl	$.LC39, %edi
+	movl	$.LC41, %edi
 	movl	$0, %eax
 	call	printf
 	.loc 3 41 0
@@ -1681,10 +1703,10 @@ main:
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, GV+48(%rip)
 	.loc 3 63 0
-	movl	$.LC41, %edi
+	movl	$.LC43, %edi
 	call	puts
 	.loc 3 64 0
-	movl	$.LC42, %edi
+	movl	$.LC44, %edi
 	call	puts
 	.loc 3 65 0
 	movq	GV+1096(%rip), %rsi
@@ -1699,14 +1721,14 @@ main:
 	movsd	-360(%rbp), %xmm1
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC43, %edi
+	movl	$.LC45, %edi
 	movl	$4, %eax
 	call	printf
 	.loc 3 70 0
-	movl	$.LC41, %edi
+	movl	$.LC43, %edi
 	call	puts
 	.loc 3 71 0
-	movl	$.LC44, %edi
+	movl	$.LC46, %edi
 	call	puts
 	.loc 3 72 0
 	movq	GV+56(%rip), %r9
@@ -1732,11 +1754,11 @@ main:
 	movsd	-360(%rbp), %xmm0
 	movl	%r11d, %edx
 	movl	%r10d, %esi
-	movl	$.LC45, %edi
+	movl	$.LC47, %edi
 	movl	$6, %eax
 	call	printf
 	.loc 3 82 0
-	movl	$.LC41, %edi
+	movl	$.LC43, %edi
 	call	puts
 	.loc 3 90 0
 	call	write_binary_parts
@@ -1908,10 +1930,10 @@ main:
 	ucomisd	%xmm0, %xmm1
 	ja	.L76
 	.loc 3 115 0 is_stmt 1
-	movl	$.LC46, %edi
+	movl	$.LC48, %edi
 	call	puts
 	.loc 3 116 0
-	movl	$.LC41, %edi
+	movl	$.LC43, %edi
 	call	puts
 	.loc 3 120 0
 	movl	$0, %eax
@@ -2039,42 +2061,42 @@ main:
 	movq	-96(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC47, %edi
+	movl	$.LC49, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 140 0
 	movq	-88(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC48, %edi
+	movl	$.LC50, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 141 0
 	movq	-80(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC49, %edi
+	movl	$.LC51, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 142 0
 	movq	-64(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC50, %edi
+	movl	$.LC52, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 143 0
 	movq	-56(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC51, %edi
+	movl	$.LC53, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 144 0
 	movq	-48(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC52, %edi
+	movl	$.LC54, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 146 0
@@ -2097,7 +2119,7 @@ main:
 	movq	-256(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC53, %edi
+	movl	$.LC55, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 151 0
@@ -2126,21 +2148,21 @@ main:
 	.loc 3 159 0
 	movsd	GV+56(%rip), %xmm1
 	cvtsi2sd	-336(%rbp), %xmm0
-	movsd	.LC54(%rip), %xmm2
+	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, -248(%rbp)
 	.loc 3 160 0
 	movsd	GV+56(%rip), %xmm1
 	cvtsi2sd	-332(%rbp), %xmm0
-	movsd	.LC54(%rip), %xmm2
+	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, -240(%rbp)
 	.loc 3 161 0
 	movsd	GV+56(%rip), %xmm1
 	cvtsi2sd	-328(%rbp), %xmm0
-	movsd	.LC54(%rip), %xmm2
+	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, -232(%rbp)
@@ -2269,7 +2291,7 @@ main:
 	.loc 3 208 0 discriminator 2
 	movsd	GV+56(%rip), %xmm2
 	cvtsi2sd	-336(%rbp), %xmm0
-	movsd	.LC54(%rip), %xmm1
+	movsd	.LC56(%rip), %xmm1
 	addsd	%xmm0, %xmm1
 	cvtsi2sd	-320(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
@@ -2278,7 +2300,7 @@ main:
 	.loc 3 209 0 discriminator 2
 	movsd	GV+56(%rip), %xmm2
 	cvtsi2sd	-332(%rbp), %xmm0
-	movsd	.LC54(%rip), %xmm1
+	movsd	.LC56(%rip), %xmm1
 	addsd	%xmm0, %xmm1
 	cvtsi2sd	-316(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
@@ -2287,7 +2309,7 @@ main:
 	.loc 3 210 0 discriminator 2
 	movsd	GV+56(%rip), %xmm2
 	cvtsi2sd	-328(%rbp), %xmm0
-	movsd	.LC54(%rip), %xmm1
+	movsd	.LC56(%rip), %xmm1
 	addsd	%xmm0, %xmm1
 	cvtsi2sd	-312(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
@@ -2579,7 +2601,7 @@ main:
 	movq	-168(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC55, %edi
+	movl	$.LC57, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 288 0
@@ -2597,7 +2619,7 @@ main:
 	movq	-120(%rbp), %rax
 	movq	%rax, -128(%rbp)
 	.loc 3 290 0
-	movl	$.LC56, %edi
+	movl	$.LC58, %edi
 	call	puts
 	.loc 3 293 0
 	movl	$0, -336(%rbp)
@@ -2633,7 +2655,7 @@ main:
 	addq	%rdx, %rax
 	movsd	GV+56(%rip), %xmm1
 	cvtsi2sd	-336(%rbp), %xmm0
-	movsd	.LC54(%rip), %xmm2
+	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, 88(%rax)
@@ -2648,7 +2670,7 @@ main:
 	addq	%rdx, %rax
 	movsd	GV+56(%rip), %xmm1
 	cvtsi2sd	-332(%rbp), %xmm0
-	movsd	.LC54(%rip), %xmm2
+	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, 96(%rax)
@@ -2663,7 +2685,7 @@ main:
 	addq	%rdx, %rax
 	movsd	GV+56(%rip), %xmm1
 	cvtsi2sd	-328(%rbp), %xmm0
-	movsd	.LC54(%rip), %xmm2
+	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, 104(%rax)
@@ -2835,70 +2857,70 @@ main:
 	cmpl	-336(%rbp), %eax
 	jg	.L104
 	.loc 3 343 0 is_stmt 1
-	movl	$.LC57, %edi
+	movl	$.LC59, %edi
 	call	puts
 	.loc 3 344 0
 	call	write_binary
 	.loc 3 348 0
 	movl	-308(%rbp), %eax
 	movl	%eax, %esi
-	movl	$.LC58, %edi
+	movl	$.LC60, %edi
 	movl	$0, %eax
 	call	printf
 	.loc 3 349 0
 	movq	-288(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC59, %edi
+	movl	$.LC61, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 350 0
 	movsd	GV+16(%rip), %xmm1
 	movsd	GV+40(%rip), %xmm0
 	mulsd	%xmm1, %xmm0
-	movl	$.LC60, %edi
+	movl	$.LC62, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 351 0
 	movq	-160(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC61, %edi
+	movl	$.LC63, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 352 0
 	movq	-152(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC62, %edi
+	movl	$.LC64, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 353 0
 	movq	-144(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC63, %edi
+	movl	$.LC65, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 354 0
 	movq	-128(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC64, %edi
+	movl	$.LC66, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 355 0
 	movq	-120(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC65, %edi
+	movl	$.LC67, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 356 0
 	movq	-112(%rbp), %rax
 	movq	%rax, -360(%rbp)
 	movsd	-360(%rbp), %xmm0
-	movl	$.LC66, %edi
+	movl	$.LC68, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 359 0
@@ -2943,7 +2965,7 @@ main:
 	.long	0
 	.long	1078198272
 	.align 8
-.LC54:
+.LC56:
 	.long	0
 	.long	1071644672
 	.text
@@ -2955,15 +2977,15 @@ main:
 	.file 8 "structures.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0xbd7
+	.long	0xbe6
 	.value	0x4
 	.long	.Ldebug_abbrev0
 	.byte	0x8
 	.uleb128 0x1
-	.long	.LASF136
-	.byte	0x1
 	.long	.LASF137
+	.byte	0x1
 	.long	.LASF138
+	.long	.LASF139
 	.quad	.Ltext0
 	.quad	.Letext0-.Ltext0
 	.long	.Ldebug_line0
@@ -3214,7 +3236,7 @@ main:
 	.byte	0xc4
 	.byte	0
 	.uleb128 0xa
-	.long	.LASF139
+	.long	.LASF140
 	.byte	0x7
 	.byte	0x9a
 	.uleb128 0x7
@@ -4073,7 +4095,7 @@ main:
 	.quad	.LFE10-.LFB10
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0x945
+	.long	0x954
 	.uleb128 0x16
 	.string	"i"
 	.byte	0x2
@@ -4081,7 +4103,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -92
+	.sleb128 -96
 	.uleb128 0x1e
 	.long	.LASF94
 	.byte	0x2
@@ -4111,9 +4133,17 @@ main:
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -88
+	.uleb128 0x14
+	.long	.LASF114
+	.byte	0x2
+	.byte	0x84
+	.long	0x62
+	.uleb128 0x3
+	.byte	0x91
+	.sleb128 -92
 	.byte	0
 	.uleb128 0x12
-	.long	.LASF114
+	.long	.LASF115
 	.byte	0x3
 	.byte	0x10
 	.long	0x62
@@ -4121,9 +4151,9 @@ main:
 	.quad	.LFE11-.LFB11
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0xb7b
+	.long	0xb8a
 	.uleb128 0x13
-	.long	.LASF115
+	.long	.LASF116
 	.byte	0x3
 	.byte	0x10
 	.long	0x62
@@ -4131,10 +4161,10 @@ main:
 	.byte	0x91
 	.sleb128 -356
 	.uleb128 0x13
-	.long	.LASF116
+	.long	.LASF117
 	.byte	0x3
 	.byte	0x10
-	.long	0xb7b
+	.long	0xb8a
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -368
@@ -4171,7 +4201,7 @@ main:
 	.byte	0x91
 	.sleb128 -340
 	.uleb128 0x14
-	.long	.LASF117
+	.long	.LASF118
 	.byte	0x3
 	.byte	0x12
 	.long	0x62
@@ -4179,7 +4209,7 @@ main:
 	.byte	0x91
 	.sleb128 -320
 	.uleb128 0x14
-	.long	.LASF118
+	.long	.LASF119
 	.byte	0x3
 	.byte	0x12
 	.long	0x62
@@ -4195,7 +4225,7 @@ main:
 	.byte	0x91
 	.sleb128 -316
 	.uleb128 0x14
-	.long	.LASF119
+	.long	.LASF120
 	.byte	0x3
 	.byte	0x12
 	.long	0x62
@@ -4299,12 +4329,12 @@ main:
 	.byte	0x91
 	.sleb128 -200
 	.uleb128 0x1e
-	.long	.LASF120
+	.long	.LASF121
 	.byte	0x3
 	.byte	0x15
 	.long	0x2a6
 	.uleb128 0x14
-	.long	.LASF121
+	.long	.LASF122
 	.byte	0x3
 	.byte	0x16
 	.long	0x2a6
@@ -4312,7 +4342,7 @@ main:
 	.byte	0x91
 	.sleb128 -192
 	.uleb128 0x14
-	.long	.LASF122
+	.long	.LASF123
 	.byte	0x3
 	.byte	0x17
 	.long	0x2a6
@@ -4320,7 +4350,7 @@ main:
 	.byte	0x91
 	.sleb128 -184
 	.uleb128 0x14
-	.long	.LASF123
+	.long	.LASF124
 	.byte	0x3
 	.byte	0x18
 	.long	0x8f
@@ -4336,7 +4366,7 @@ main:
 	.byte	0x91
 	.sleb128 -288
 	.uleb128 0x14
-	.long	.LASF124
+	.long	.LASF125
 	.byte	0x3
 	.byte	0x1b
 	.long	0x2a6
@@ -4344,7 +4374,7 @@ main:
 	.byte	0x91
 	.sleb128 -280
 	.uleb128 0x14
-	.long	.LASF125
+	.long	.LASF126
 	.byte	0x3
 	.byte	0x1b
 	.long	0x2a6
@@ -4352,7 +4382,7 @@ main:
 	.byte	0x91
 	.sleb128 -304
 	.uleb128 0x14
-	.long	.LASF126
+	.long	.LASF127
 	.byte	0x3
 	.byte	0x1c
 	.long	0x62
@@ -4360,7 +4390,7 @@ main:
 	.byte	0x91
 	.sleb128 -324
 	.uleb128 0x14
-	.long	.LASF127
+	.long	.LASF128
 	.byte	0x3
 	.byte	0x1d
 	.long	0x553
@@ -4368,7 +4398,7 @@ main:
 	.byte	0x91
 	.sleb128 -176
 	.uleb128 0x14
-	.long	.LASF128
+	.long	.LASF129
 	.byte	0x3
 	.byte	0x1d
 	.long	0x553
@@ -4376,7 +4406,7 @@ main:
 	.byte	0x91
 	.sleb128 -144
 	.uleb128 0x14
-	.long	.LASF129
+	.long	.LASF130
 	.byte	0x3
 	.byte	0x1d
 	.long	0x2a6
@@ -4384,7 +4414,7 @@ main:
 	.byte	0x91
 	.sleb128 -272
 	.uleb128 0x14
-	.long	.LASF130
+	.long	.LASF131
 	.byte	0x3
 	.byte	0x1e
 	.long	0x553
@@ -4392,7 +4422,7 @@ main:
 	.byte	0x91
 	.sleb128 -112
 	.uleb128 0x14
-	.long	.LASF131
+	.long	.LASF132
 	.byte	0x3
 	.byte	0x1e
 	.long	0x553
@@ -4400,7 +4430,7 @@ main:
 	.byte	0x91
 	.sleb128 -80
 	.uleb128 0x14
-	.long	.LASF132
+	.long	.LASF133
 	.byte	0x3
 	.byte	0x1f
 	.long	0x553
@@ -4408,7 +4438,7 @@ main:
 	.byte	0x91
 	.sleb128 -80
 	.uleb128 0x14
-	.long	.LASF133
+	.long	.LASF134
 	.byte	0x3
 	.byte	0x1f
 	.long	0x553
@@ -4428,10 +4458,10 @@ main:
 	.byte	0x3
 	.quad	GV
 	.uleb128 0x20
-	.long	.LASF134
+	.long	.LASF135
 	.byte	0x8
 	.byte	0x28
-	.long	0xbaa
+	.long	0xbb9
 	.uleb128 0x9
 	.byte	0x3
 	.quad	part
@@ -4439,7 +4469,7 @@ main:
 	.byte	0x8
 	.long	0x376
 	.uleb128 0x20
-	.long	.LASF135
+	.long	.LASF136
 	.byte	0x8
 	.byte	0x3b
 	.long	0x3e2
@@ -4975,7 +5005,7 @@ main:
 	.string	"gadget_head"
 .LASF32:
 	.string	"_shortbuf"
-.LASF139:
+.LASF140:
 	.string	"_IO_lock_t"
 .LASF86:
 	.string	"momentum_p"
@@ -4991,7 +5021,7 @@ main:
 	.string	"unsigned int"
 .LASF13:
 	.string	"_flags"
-.LASF125:
+.LASF126:
 	.string	"totMassCIC"
 .LASF53:
 	.string	"NpTot"
@@ -5003,7 +5033,7 @@ main:
 	.string	"NGRID"
 .LASF25:
 	.string	"_markers"
-.LASF136:
+.LASF137:
 	.string	"GNU C 4.8.4 -mtune=generic -march=x86-64 -g -fstack-protector"
 .LASF84:
 	.string	"id_part"
@@ -5011,25 +5041,25 @@ main:
 	.string	"outFile"
 .LASF88:
 	.string	"scaled"
-.LASF120:
+.LASF121:
 	.string	"vmod"
 .LASF97:
 	.string	"uintaux"
-.LASF134:
+.LASF135:
 	.string	"part"
-.LASF129:
+.LASF130:
 	.string	"sumaVelModule"
 .LASF46:
 	.string	"_pos"
-.LASF135:
+.LASF136:
 	.string	"Header"
 .LASF24:
 	.string	"_IO_save_end"
 .LASF49:
 	.string	"float"
-.LASF117:
+.LASF118:
 	.string	"index"
-.LASF128:
+.LASF129:
 	.string	"sumaVel"
 .LASF48:
 	.string	"long long unsigned int"
@@ -5063,13 +5093,13 @@ main:
 	.string	"denCon"
 .LASF7:
 	.string	"size_t"
-.LASF127:
+.LASF128:
 	.string	"sumaMom"
 .LASF59:
 	.string	"OmegaM0"
 .LASF16:
 	.string	"_IO_read_base"
-.LASF115:
+.LASF116:
 	.string	"argc"
 .LASF44:
 	.string	"_next"
@@ -5077,11 +5107,11 @@ main:
 	.string	"globalVariables"
 .LASF98:
 	.string	"randr"
-.LASF123:
+.LASF124:
 	.string	"infile"
 .LASF11:
 	.string	"char"
-.LASF137:
+.LASF138:
 	.string	"CIC.c"
 .LASF80:
 	.string	"OmegaLambda"
@@ -5089,7 +5119,7 @@ main:
 	.string	"_mode"
 .LASF105:
 	.string	"filename"
-.LASF119:
+.LASF120:
 	.string	"idPart"
 .LASF43:
 	.string	"_IO_marker"
@@ -5097,7 +5127,7 @@ main:
 	.string	"_IO_read_ptr"
 .LASF70:
 	.string	"Npart"
-.LASF121:
+.LASF122:
 	.string	"Window_fn"
 .LASF82:
 	.string	"Cell"
@@ -5107,7 +5137,7 @@ main:
 	.string	"long long int"
 .LASF58:
 	.string	"FILENAME"
-.LASF130:
+.LASF131:
 	.string	"sumaMomPart"
 .LASF22:
 	.string	"_IO_save_base"
@@ -5115,9 +5145,9 @@ main:
 	.string	"read_parameters"
 .LASF107:
 	.string	"filenamedump"
-.LASF133:
+.LASF134:
 	.string	"auxVel"
-.LASF138:
+.LASF139:
 	.string	"/home/darivadi/Documents/University/Master/Courses/Investigation_III/Codes_last_version/CIC_code"
 .LASF111:
 	.string	"momentum_aux"
@@ -5135,9 +5165,9 @@ main:
 	.string	"mass"
 .LASF31:
 	.string	"_vtable_offset"
-.LASF116:
+.LASF117:
 	.string	"argv"
-.LASF132:
+.LASF133:
 	.string	"auxMom"
 .LASF15:
 	.string	"_IO_read_end"
@@ -5165,7 +5195,7 @@ main:
 	.string	"volCell"
 .LASF74:
 	.string	"flag_feedback"
-.LASF122:
+.LASF123:
 	.string	"norm_factor"
 .LASF33:
 	.string	"_lock"
@@ -5173,7 +5203,7 @@ main:
 	.string	"write_binary_parts"
 .LASF10:
 	.string	"sizetype"
-.LASF118:
+.LASF119:
 	.string	"indexaux"
 .LASF0:
 	.string	"long unsigned int"
@@ -5195,7 +5225,7 @@ main:
 	.string	"N_min"
 .LASF109:
 	.string	"write_binary"
-.LASF126:
+.LASF127:
 	.string	"sumaPart"
 .LASF1:
 	.string	"unsigned char"
@@ -5207,7 +5237,7 @@ main:
 	.string	"Omega0"
 .LASF18:
 	.string	"_IO_write_ptr"
-.LASF131:
+.LASF132:
 	.string	"sumaVelPart"
 .LASF63:
 	.string	"posx"
@@ -5221,9 +5251,11 @@ main:
 	.string	"nread"
 .LASF4:
 	.string	"signed char"
+.LASF114:
+	.string	"counter_b"
 .LASF2:
 	.string	"short unsigned int"
-.LASF114:
+.LASF115:
 	.string	"main"
 .LASF99:
 	.string	"A_range"
@@ -5239,7 +5271,7 @@ main:
 	.string	"num_files"
 .LASF30:
 	.string	"_cur_column"
-.LASF124:
+.LASF125:
 	.string	"totalMass"
 .LASF90:
 	.string	"N_tot"
