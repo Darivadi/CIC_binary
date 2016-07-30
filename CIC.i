@@ -3495,11 +3495,13 @@ void locateCell(double xp, double yp, double zp, int indexPartArray, struct Cell
   cells[n].id_part[cells[n].Np_cell-1] = indexPartArray;
 }
 # 302 "functions.h"
-int mod(int a, int b){
+int mod(int a, int b)
+{
   int mod = a%b;
-  while(mod<0){
-    mod += b;
-  }
+  while(mod<0)
+    {
+      mod += b;
+    }
   return mod;
 }
 # 14 "CIC.c" 2
@@ -3713,16 +3715,7 @@ int main(int argc, char *argv[])
   GV.dx,
   GV.FILENAME);
   printf("-----------------------------------------------\n");
-
-
-
-
-
-
-
-  write_binary_parts();
-
-
+# 93 "CIC.c"
   cells = (struct Cell *)calloc( GV.NGRID3, sizeof( struct Cell) );
 
 
@@ -3741,9 +3734,10 @@ int main(int argc, char *argv[])
     }
 
 
-  for(i=0; i<GV.NpTot; i++){
-    locateCell(part[i].posx, part[i].posy, part[i].posz, i, cells);
-  }
+  for(i=0; i<GV.NpTot; i++)
+    {
+      locateCell(part[i].posx, part[i].posy, part[i].posz, i, cells);
+    }
 
   printf("Particles located in the grid\n");
   printf("-----------------------------------------------\n");
@@ -3795,7 +3789,7 @@ int main(int argc, char *argv[])
 
 
  Np = cells[index].Np_cell;
-# 175 "CIC.c"
+# 176 "CIC.c"
  for(l=0; l<Np; l++){
 
    idPart = cells[index].id_part[l];
@@ -3809,7 +3803,7 @@ int main(int argc, char *argv[])
    vxp = part[idPart].velx;
    vyp = part[idPart].vely;
    vzp = part[idPart].velz;
-# 203 "CIC.c"
+# 204 "CIC.c"
    for(ii=-1; ii<=1; ii++){
      for(jj=-1; jj<=1; jj++){
        for(kk=-1; kk<=1; kk++){
@@ -3833,13 +3827,13 @@ int main(int argc, char *argv[])
   cells[indexaux].momentum_p[1] += vyp * Window_fn;
   cells[indexaux].momentum_p[2] += vzp * Window_fn;
   cells[indexaux].W_count += Window_fn;
-# 237 "CIC.c"
+# 238 "CIC.c"
        }
      }
    }
 
  }
-# 253 "CIC.c"
+# 254 "CIC.c"
       }
     }
   }
@@ -3854,7 +3848,7 @@ int main(int argc, char *argv[])
       for(k=0; k<GV.NGRID; k++){
 
  index = (k)+GV.NGRID*((j)+GV.NGRID*(i));
-# 277 "CIC.c"
+# 278 "CIC.c"
  cells[index].momentum_p[0] = norm_factor * cells[index].momentum_p[0];
  cells[index].momentum_p[1] = norm_factor * cells[index].momentum_p[1];
  cells[index].momentum_p[2] = norm_factor * cells[index].momentum_p[2];
@@ -3902,7 +3896,7 @@ int main(int argc, char *argv[])
 
 
        cells[index].denCon = (cells[index].rho/GV.rhoMean) - 1.0;
-# 338 "CIC.c"
+# 339 "CIC.c"
      }
  }
     }

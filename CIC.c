@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
   //////////////////////////////
 
   /*+++++ First, a test with velocities of some particles with position in z between 0 and 40 Mpc +++++*/
-  write_binary_parts();
+  //write_binary_parts();
 
   /* Array of structure Cell, size NGRID^3 */
   cells = (struct Cell *)calloc( GV.NGRID3, sizeof( struct Cell) );
@@ -108,9 +108,10 @@ int main(int argc, char *argv[])
     }//for i
   
   /* Locating cells */
-  for(i=0; i<GV.NpTot; i++){
-    locateCell(part[i].posx, part[i].posy, part[i].posz, i, cells);
-  }
+  for(i=0; i<GV.NpTot; i++)
+    {
+      locateCell(part[i].posx, part[i].posy, part[i].posz, i, cells);
+    }
 
   printf("Particles located in the grid\n");
   printf("-----------------------------------------------\n");

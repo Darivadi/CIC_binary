@@ -299,13 +299,15 @@ void locateCell(double xp, double yp, double zp, int indexPartArray, struct Cell
  *  returns: The module a%b including the option for negative numbers.
  */
 
-int mod(int a, int b){
+int mod(int a, int b)
+{
   int mod = a%b;
-  while(mod<0){
-    mod += b;
-  }
+  while(mod<0)
+    {
+      mod += b;
+    }//while
   return mod;
-}
+}//mod
 
 
 /*
