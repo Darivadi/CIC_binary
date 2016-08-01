@@ -278,6 +278,9 @@ int main(int argc, char *argv[])
 	cells[index].momentum_p[0] = norm_factor * cells[index].momentum_p[0];
 	cells[index].momentum_p[1] = norm_factor * cells[index].momentum_p[1];
 	cells[index].momentum_p[2] = norm_factor * cells[index].momentum_p[2];
+
+
+	cells[index].rho = cells[index].rho / GV.volCell; //This is the actual density
       }//for k
     }//for j
   }//for i
@@ -306,10 +309,8 @@ int main(int argc, char *argv[])
 	      cells[index].pos[Z] = GV.dx * (0.5 + k);
 	      
 	      /*----- Calculating the final density in the cell -----*/
-	      totMassCIC += cells[index].rho; /* We have not divided by the volume yet.                    
-                                                 This is still the mass */
-
-	      cells[index].rho = cells[index].rho / GV.volCell; //This is the actual density
+	      totMassCIC += GV.volCell*cells[index].rho; /* Computing mass conservation */
+	      
 	      
 	      /*----- Verification of number of particles -----*/
 	      sumaPart += cells[index].Np_cell;	      

@@ -3447,25 +3447,34 @@ int readGADGETBinaryFile(){
 # 165 "functions.h"
 double W(double x, double y, double z, double H){
   double Wx, Wy, Wz;
-# 200 "functions.h"
-  if( fabs(x) < H ){
-    Wx = 1.0 - fabs(x)/H;
-  }else{
-    Wx = 0.0;
-  }
+# 215 "functions.h"
+  if( fabs(x) <= H )
+    {
+      Wx = 1.0 - fabs(x)/H;
+    }
+  else
+    {
+      Wx = 0.0;
+    }
 
-  if( fabs(y) < H ){
-    Wy = 1.0 - fabs(y)/H;
-  }else{
-    Wy = 0.0;
-  }
+  if( fabs(y) <= H )
+    {
+      Wy = 1.0 - fabs(y)/H;
+    }
+  else
+    {
+      Wy = 0.0;
+    }
 
-  if( fabs(z) < H ){
-    Wz = 1.0 - fabs(z)/H;
-  }else{
-    Wz = 0.0;
-  }
-# 248 "functions.h"
+  if( fabs(z) <= H )
+    {
+      Wz = 1.0 - fabs(z)/H;
+    }
+  else
+    {
+      Wz = 0.0;
+    }
+# 287 "functions.h"
   return Wx * Wy * Wz;
 
 
@@ -3473,7 +3482,7 @@ double W(double x, double y, double z, double H){
 
 
 }
-# 269 "functions.h"
+# 308 "functions.h"
 void locateCell(double xp, double yp, double zp, int indexPartArray, struct Cell *cells){
 
 
@@ -3494,7 +3503,7 @@ void locateCell(double xp, double yp, double zp, int indexPartArray, struct Cell
   cells[n].id_part = (long int*) realloc(cells[n].id_part, cells[n].Np_cell*sizeof(long int));
   cells[n].id_part[cells[n].Np_cell-1] = indexPartArray;
 }
-# 302 "functions.h"
+# 341 "functions.h"
 int mod(int a, int b)
 {
   int mod = a%b;
@@ -3852,6 +3861,9 @@ int main(int argc, char *argv[])
  cells[index].momentum_p[0] = norm_factor * cells[index].momentum_p[0];
  cells[index].momentum_p[1] = norm_factor * cells[index].momentum_p[1];
  cells[index].momentum_p[2] = norm_factor * cells[index].momentum_p[2];
+
+
+ cells[index].rho = cells[index].rho / GV.volCell;
       }
     }
   }
@@ -3880,10 +3892,8 @@ int main(int argc, char *argv[])
        cells[index].pos[2] = GV.dx * (0.5 + k);
 
 
-       totMassCIC += cells[index].rho;
+       totMassCIC += GV.volCell*cells[index].rho;
 
-
-       cells[index].rho = cells[index].rho / GV.volCell;
 
 
        sumaPart += cells[index].Np_cell;
@@ -3896,7 +3906,7 @@ int main(int argc, char *argv[])
 
 
        cells[index].denCon = (cells[index].rho/GV.rhoMean) - 1.0;
-# 339 "CIC.c"
+# 340 "CIC.c"
      }
  }
     }

@@ -169,82 +169,121 @@ double W(double x, double y, double z, double H){
 #ifdef NGP
   /* Nearest Grid Point */
   // One dimensional window function in the X-axis
-  if( fabs(x) < H*0.5 ){
-    Wx = 1.0;
-  }else if( fabs(x) == H*0.5  ){
-    Wx = 0.5;
-  }else{
-    Wx = 0.0;
-  }
+  if( fabs(x) < H*0.5 )
+    {
+      Wx = 1.0;
+    }
+  else if( fabs(x) == H*0.5  )
+    {
+      Wx = 0.5;
+    }
+  else
+    {
+      Wx = 0.0;
+    }
   // One dimensional window function in the Y-axis
-  if( fabs(y) < H*0.5 ){
-    Wy = 1.0;
-  }else if( fabs(y) == H*0.5  ){
-    Wy = 0.5;
-  }else{
-    Wy = 0.0;
-  }
+  if( fabs(y) < H*0.5 )
+    {
+      Wy = 1.0;
+    }
+  else if( fabs(y) == H*0.5  )
+    {
+      Wy = 0.5;
+    }
+  else
+    {
+      Wy = 0.0;
+    }
   // One dimensional window function in the Z-axis
-  if( fabs(z) < H*0.5 ){
+  if( fabs(z) < H*0.5 )
+    {
     Wz = 1.0;
-  }else if( fabs(z) == H*0.5  ){
-    Wz = 0.5;
-  }else{
-    Wz = 0.0;
-  }
+    }
+  else if( fabs(z) == H*0.5  )
+    {
+      Wz = 0.5;
+    }
+  else
+    {
+      Wz = 0.0;
+    }
 #endif
 
 #ifdef CIC
   /* Cloud In Cell */
   // One dimensional window function in the X-axis
-  if( fabs(x) < H ){
-    Wx = 1.0 - fabs(x)/H;
-  }else{
-    Wx = 0.0;
-  }
+  if( fabs(x) <= H )
+    {
+      Wx = 1.0 - fabs(x)/H;
+    }
+  else
+    {
+      Wx = 0.0;
+    }
   // One dimensional window function in the Y-axis
-  if( fabs(y) < H ){
-    Wy = 1.0 - fabs(y)/H;
-  }else{
-    Wy = 0.0;
-  }
+  if( fabs(y) <= H )
+    {
+      Wy = 1.0 - fabs(y)/H;
+    }
+  else
+    {
+      Wy = 0.0;
+    }
   // One dimensional window function in the Z-axis
-  if( fabs(z) < H ){
-    Wz = 1.0 - fabs(z)/H;
-  }else{
-    Wz = 0.0;
-  }
+  if( fabs(z) <= H )
+    {
+      Wz = 1.0 - fabs(z)/H;
+    }
+  else
+    {
+      Wz = 0.0;
+    }
 #endif
 
   // CHECK IT!!!!!!
 #ifdef TSC
   /* Triangular Shaped Cloud */
   // One dimensional window function in the X-axis
-  if( fabs(x) <= H*0.5 ){
-    Wx = (0.75/H) - ( (x*x)/(H*H*H) );
-  }else if( H*0.5 <= fabs(x) && fabs(x) <= 1.5*H  ){
-    Wx = (0.5/H)*(1.5 - fabs(x)/H)*(1.5 - fabs(x)/H);
-  }else{
-    Wx = 0.0;
-  }
+  if( fabs(x) <= H*0.5 )
+    {
+      Wx = (0.75/H) - ( (x*x)/(H*H*H) );
+    }
+  else if( H*0.5 <= fabs(x) && fabs(x) <= 1.5*H  )
+    {
+      Wx = (0.5/H)*(1.5 - fabs(x)/H)*(1.5 - fabs(x)/H);
+    }
+  else
+    {
+      Wx = 0.0;
+    }
   // One dimensional window function in the Y-axis
-  if( fabs(y) <= H*0.5 ){
-    Wy = (0.75/H) - ( (y*y)/(H*H*H) );
-  }else if( H*0.5 <= fabs(y) && fabs(y) <= 1.5*H  ){
-    Wy = (0.5/H)*(1.5 - fabs(y)/H)*(1.5 - fabs(y)/H);
-  }else{
-    Wy = 0.0;
-  }
+  if( fabs(y) <= H*0.5 )
+    {
+      Wy = (0.75/H) - ( (y*y)/(H*H*H) );
+    }
+  else if( H*0.5 <= fabs(y) && fabs(y) <= 1.5*H  )
+    {
+      Wy = (0.5/H)*(1.5 - fabs(y)/H)*(1.5 - fabs(y)/H);
+    }
+  else
+    {
+      Wy = 0.0;
+    }
   // One dimensional window function in the Z-axis
-  if( fabs(z) <= H*0.5 ){
-    Wz = (0.75/H) - ( (z*z)/(H*H*H) );
-  }else if( H*0.5 <= fabs(z) && fabs(z) <= 1.5*H  ){
-    Wz = (0.5/H)*(1.5 - fabs(z)/H)*(1.5 - fabs(z)/H);
-  }else{
-    Wz = 0.0;
-  }
+  if( fabs(z) <= H*0.5 )
+    {
+      Wz = (0.75/H) - ( (z*z)/(H*H*H) );
+    }
+  else if( H*0.5 <= fabs(z) && fabs(z) <= 1.5*H  )
+    {
+      Wz = (0.5/H)*(1.5 - fabs(z)/H)*(1.5 - fabs(z)/H);
+    }
+  else
+    {
+      Wz = 0.0;
+    }
 #endif
-
+  
   return Wx * Wy * Wz; /* As we use the regular cubic grid, the three 
 			  dimensional window function is given as the 
 			  multiplication of three one dimensional window 
