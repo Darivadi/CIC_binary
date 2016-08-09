@@ -6,7 +6,7 @@
  *
  *  There are no arguments in the routiene.
  *
- *  returns: Total number of particles stored in the binare file.
+ *  returns: Total number of particles stored in the binary file.
  */
 
 double randr(double A_range){

@@ -1,8 +1,9 @@
 CC = gcc
 CFLAGS = -g -Wall -I/home/$(USER)/libs/include/ -DCIC -DBINARYDATA
 LFLAGS = -L/home/$(USER)/libs/lib
-PROGRAM = CIC
+#PROGRAM = CIC
 #PROGRAM = CIC_plot_dens
+PROGRAM = CIC_noperiodic
 
 $(PROGRAM):
 	$(CC) -c -save-temps $@.c $(CFLAGS)
