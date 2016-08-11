@@ -205,11 +205,12 @@ int main(int argc, char *argv[])
 	    for(jj=-1; jj<=1; jj++){
 	      for(kk=-1; kk<=1; kk++){
 
+		/*
 		if(index%5000000==0 && idPart%10000000==0)
 		  {
 		    printf("in cell %d with part %d\n", index, idPart);
 		  }//if
-
+		*/
 		
 		//indexaux = INDEX(mod(i+ii,GV.NGRID),mod(j+jj,GV.NGRID),mod(k+kk,GV.NGRID));
 		if(i+ii < 0 || i+ii > GV.NGRID)
