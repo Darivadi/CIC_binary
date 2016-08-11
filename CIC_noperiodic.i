@@ -3820,6 +3820,12 @@ int main(int argc, char *argv[])
      for(jj=-1; jj<=1; jj++){
        for(kk=-1; kk<=1; kk++){
 
+  if(index%5000000==0 && idPart%10000000==0)
+    {
+      printf("in cell %d with part %d\n", index, idPart);
+    }
+
+
 
   indexaux = (k+kk)+GV.NGRID*((j+jj)+GV.NGRID*(i+ii));
   xc = GV.dx*(0.5 + i+ii);
@@ -3840,13 +3846,13 @@ int main(int argc, char *argv[])
   cells[indexaux].momentum_p[1] += vyp * Window_fn;
   cells[indexaux].momentum_p[2] += vzp * Window_fn;
   cells[indexaux].W_count += Window_fn;
-# 239 "CIC_noperiodic.c"
+# 245 "CIC_noperiodic.c"
        }
      }
    }
 
  }
-# 255 "CIC_noperiodic.c"
+# 261 "CIC_noperiodic.c"
       }
     }
   }
@@ -3861,7 +3867,7 @@ int main(int argc, char *argv[])
       for(k=0; k<GV.NGRID; k++){
 
  index = (k)+GV.NGRID*((j)+GV.NGRID*(i));
-# 279 "CIC_noperiodic.c"
+# 285 "CIC_noperiodic.c"
  cells[index].momentum_p[0] = norm_factor * cells[index].momentum_p[0];
  cells[index].momentum_p[1] = norm_factor * cells[index].momentum_p[1];
  cells[index].momentum_p[2] = norm_factor * cells[index].momentum_p[2];
@@ -3910,7 +3916,7 @@ int main(int argc, char *argv[])
 
 
        cells[index].denCon = (cells[index].rho/GV.rhoMean) - 1.0;
-# 341 "CIC_noperiodic.c"
+# 347 "CIC_noperiodic.c"
      }
  }
     }
