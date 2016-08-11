@@ -3827,6 +3827,20 @@ int main(int argc, char *argv[])
 
 
 
+  if(i+ii < 0 || i+ii > GV.NGRID)
+    {
+      ii=0;
+    }
+
+  if(j+jj < 0 || i+ii > GV.NGRID)
+    {
+      jj=0;
+    }
+
+  if(k+kk < 0 || i+ii > GV.NGRID)
+    {
+      kk=0;
+    }
   indexaux = (k+kk)+GV.NGRID*((j+jj)+GV.NGRID*(i+ii));
   xc = GV.dx*(0.5 + i+ii);
   yc = GV.dx*(0.5 + j+jj);
@@ -3846,13 +3860,13 @@ int main(int argc, char *argv[])
   cells[indexaux].momentum_p[1] += vyp * Window_fn;
   cells[indexaux].momentum_p[2] += vzp * Window_fn;
   cells[indexaux].W_count += Window_fn;
-# 245 "CIC_noperiodic.c"
+# 259 "CIC_noperiodic.c"
        }
      }
    }
 
  }
-# 261 "CIC_noperiodic.c"
+# 275 "CIC_noperiodic.c"
       }
     }
   }
@@ -3867,7 +3881,7 @@ int main(int argc, char *argv[])
       for(k=0; k<GV.NGRID; k++){
 
  index = (k)+GV.NGRID*((j)+GV.NGRID*(i));
-# 285 "CIC_noperiodic.c"
+# 299 "CIC_noperiodic.c"
  cells[index].momentum_p[0] = norm_factor * cells[index].momentum_p[0];
  cells[index].momentum_p[1] = norm_factor * cells[index].momentum_p[1];
  cells[index].momentum_p[2] = norm_factor * cells[index].momentum_p[2];
@@ -3916,7 +3930,7 @@ int main(int argc, char *argv[])
 
 
        cells[index].denCon = (cells[index].rho/GV.rhoMean) - 1.0;
-# 347 "CIC_noperiodic.c"
+# 361 "CIC_noperiodic.c"
      }
  }
     }
