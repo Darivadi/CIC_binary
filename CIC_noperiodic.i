@@ -3786,6 +3786,15 @@ int main(int argc, char *argv[])
   printf("Total mean velocity module is %12.6lf\n", sumaVelModule);
 
 
+  i = 0;
+  ii = -1;
+
+  if(i+ii < 0)
+    {
+      printf("it enters i=%d, ii=%d\n", i, ii);
+    }
+
+
 
   for(i=0; i<GV.NGRID; i++){
     for(j=0; j<GV.NGRID; j++){
@@ -3801,7 +3810,7 @@ int main(int argc, char *argv[])
 
 
  Np = cells[index].Np_cell;
-# 176 "CIC_noperiodic.c"
+# 185 "CIC_noperiodic.c"
  for(l=0; l<Np; l++){
 
    idPart = cells[index].id_part[l];
@@ -3815,22 +3824,22 @@ int main(int argc, char *argv[])
    vxp = part[idPart].velx;
    vyp = part[idPart].vely;
    vzp = part[idPart].velz;
-# 204 "CIC_noperiodic.c"
+# 213 "CIC_noperiodic.c"
    for(ii=-1; ii<=1; ii++){
      for(jj=-1; jj<=1; jj++){
        for(kk=-1; kk<=1; kk++){
-# 215 "CIC_noperiodic.c"
-  if(i+ii < 0 || i+ii > GV.NGRID)
+# 224 "CIC_noperiodic.c"
+  if( (i+ii < 0) || ( i+ii > GV.NGRID) )
     {
       ii=0;
     }
 
-  if(j+jj < 0 || i+ii > GV.NGRID)
+  if( (j+jj < 0) || (i+ii > GV.NGRID) )
     {
       jj=0;
     }
 
-  if(k+kk < 0 || i+ii > GV.NGRID)
+  if( (k+kk < 0) || (i+ii > GV.NGRID) )
     {
       kk=0;
     }
@@ -3855,13 +3864,13 @@ int main(int argc, char *argv[])
   cells[indexaux].momentum_p[1] += vyp * Window_fn;
   cells[indexaux].momentum_p[2] += vzp * Window_fn;
   cells[indexaux].W_count += Window_fn;
-# 261 "CIC_noperiodic.c"
+# 270 "CIC_noperiodic.c"
        }
      }
    }
 
  }
-# 277 "CIC_noperiodic.c"
+# 286 "CIC_noperiodic.c"
       }
     }
   }
@@ -3876,7 +3885,7 @@ int main(int argc, char *argv[])
       for(k=0; k<GV.NGRID; k++){
 
  index = (k)+GV.NGRID*((j)+GV.NGRID*(i));
-# 301 "CIC_noperiodic.c"
+# 310 "CIC_noperiodic.c"
  cells[index].momentum_p[0] = norm_factor * cells[index].momentum_p[0];
  cells[index].momentum_p[1] = norm_factor * cells[index].momentum_p[1];
  cells[index].momentum_p[2] = norm_factor * cells[index].momentum_p[2];
@@ -3925,7 +3934,7 @@ int main(int argc, char *argv[])
 
 
        cells[index].denCon = (cells[index].rho/GV.rhoMean) - 1.0;
-# 363 "CIC_noperiodic.c"
+# 372 "CIC_noperiodic.c"
      }
  }
     }

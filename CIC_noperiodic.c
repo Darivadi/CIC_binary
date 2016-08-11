@@ -147,6 +147,15 @@ int main(int argc, char *argv[])
   sumaVelModule = sqrt(sumaVelPart[X]*sumaVelPart[X] + sumaVelPart[Y]*sumaVelPart[Y] + sumaVelPart[Z]*sumaVelPart[Z]);
   printf("Total mean velocity module is %12.6lf\n", sumaVelModule);
 
+
+  i = 0;
+  ii = -1;
+  
+  if(i+ii < 0)
+    {
+      printf("it enters i=%d, ii=%d\n", i, ii);
+    }
+
   
   /* Distribution scheme  */
   for(i=0; i<GV.NGRID; i++){
@@ -212,17 +221,17 @@ int main(int argc, char *argv[])
 		  }//if
 		*/
 				
-		if(i+ii < 0 || i+ii > GV.NGRID)
+		if( (i+ii < 0) || ( i+ii > GV.NGRID) )
 		  {
 		    ii=0;		      
 		  }
 		
-		if(j+jj < 0 || i+ii > GV.NGRID)
+		if( (j+jj < 0) || (i+ii > GV.NGRID) )
 		  {
 		    jj=0;		      
 		  }
 
-		if(k+kk < 0 || i+ii > GV.NGRID)
+		if( (k+kk < 0) || (i+ii > GV.NGRID) )
 		  {
 		    kk=0;
 		  }
