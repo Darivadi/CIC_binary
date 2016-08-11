@@ -211,8 +211,7 @@ int main(int argc, char *argv[])
 		    printf("in cell %d with part %d\n", index, idPart);
 		  }//if
 		*/
-		
-		//indexaux = INDEX(mod(i+ii,GV.NGRID),mod(j+jj,GV.NGRID),mod(k+kk,GV.NGRID));
+				
 		if(i+ii < 0 || i+ii > GV.NGRID)
 		  {
 		    ii=0;		      
@@ -227,7 +226,9 @@ int main(int argc, char *argv[])
 		  {
 		    kk=0;
 		  }
-		indexaux = INDEX( i+ii, j+jj, k+kk );
+		
+		//indexaux = INDEX( i+ii, j+jj, k+kk );
+		indexaux = INDEX(mod(i+ii,GV.NGRID),mod(j+jj,GV.NGRID),mod(k+kk,GV.NGRID));
 		xc = GV.dx*(0.5 + i+ii);
 		yc = GV.dx*(0.5 + j+jj);
 		zc = GV.dx*(0.5 + k+kk);

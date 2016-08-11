@@ -1587,28 +1587,36 @@ main:
 	.cfi_offset 6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
+	pushq	%r14
+	pushq	%r13
+	pushq	%r12
+	pushq	%rbx
 	subq	$336, %rsp
-	movl	%edi, -308(%rbp)
-	movq	%rsi, -320(%rbp)
+	.cfi_offset 14, -24
+	.cfi_offset 13, -32
+	.cfi_offset 12, -40
+	.cfi_offset 3, -48
+	movl	%edi, -340(%rbp)
+	movq	%rsi, -352(%rbp)
 	.loc 3 24 0
-	movq	$0, -248(%rbp)
+	movq	$0, -280(%rbp)
 	.loc 3 25 0
-	movq	$0, -240(%rbp)
+	movq	$0, -272(%rbp)
 	.loc 3 27 0
 	movl	$0, %eax
-	movq	%rax, -232(%rbp)
+	movq	%rax, -264(%rbp)
 	movl	$0, %eax
-	movq	%rax, -256(%rbp)
+	movq	%rax, -288(%rbp)
 	.loc 3 28 0
-	movl	$0, -276(%rbp)
+	movl	$0, -308(%rbp)
 	.loc 3 37 0
-	cmpl	$1, -308(%rbp)
+	cmpl	$1, -340(%rbp)
 	jg	.L72
 	.loc 3 39 0
 	movl	$.LC40, %edi
 	call	puts
 	.loc 3 40 0
-	movq	-320(%rbp), %rax
+	movq	-352(%rbp), %rax
 	movq	(%rax), %rax
 	movq	%rax, %rsi
 	movl	$.LC41, %edi
@@ -1619,11 +1627,11 @@ main:
 	call	exit
 .L72:
 	.loc 3 44 0
-	movq	-320(%rbp), %rax
+	movq	-352(%rbp), %rax
 	movq	8(%rax), %rax
-	movq	%rax, -248(%rbp)
+	movq	%rax, -280(%rbp)
 	.loc 3 45 0
-	movq	-248(%rbp), %rax
+	movq	-280(%rbp), %rax
 	movq	%rax, %rdi
 	call	read_parameters
 	.loc 3 46 0
@@ -1668,15 +1676,15 @@ main:
 	movsd	GV+40(%rip), %xmm1
 	movsd	GV+16(%rip), %xmm0
 	mulsd	%xmm0, %xmm1
-	movsd	%xmm1, -328(%rbp)
+	movsd	%xmm1, -360(%rbp)
 	movq	GV+8(%rip), %rax
 	movabsq	$4613937818241073152, %rdx
-	movq	%rdx, -336(%rbp)
-	movsd	-336(%rbp), %xmm1
-	movq	%rax, -336(%rbp)
-	movsd	-336(%rbp), %xmm0
+	movq	%rdx, -368(%rbp)
+	movsd	-368(%rbp), %xmm1
+	movq	%rax, -368(%rbp)
+	movsd	-368(%rbp), %xmm0
 	call	pow
-	movsd	-328(%rbp), %xmm1
+	movsd	-360(%rbp), %xmm1
 	divsd	%xmm0, %xmm1
 	movapd	%xmm1, %xmm0
 	movsd	%xmm0, GV+32(%rip)
@@ -1705,14 +1713,14 @@ main:
 	movq	GV+1080(%rip), %rcx
 	movq	GV+1072(%rip), %rdx
 	movq	GV+1064(%rip), %rax
-	movq	%rsi, -328(%rbp)
-	movsd	-328(%rbp), %xmm3
-	movq	%rcx, -328(%rbp)
-	movsd	-328(%rbp), %xmm2
-	movq	%rdx, -328(%rbp)
-	movsd	-328(%rbp), %xmm1
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	movq	%rsi, -360(%rbp)
+	movsd	-360(%rbp), %xmm3
+	movq	%rcx, -360(%rbp)
+	movsd	-360(%rbp), %xmm2
+	movq	%rdx, -360(%rbp)
+	movsd	-360(%rbp), %xmm1
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC45, %edi
 	movl	$4, %eax
 	call	printf
@@ -1732,18 +1740,18 @@ main:
 	movl	GV+24(%rip), %r11d
 	movl	GV(%rip), %r10d
 	movl	$GV+64, %ecx
-	movq	%r9, -328(%rbp)
-	movsd	-328(%rbp), %xmm5
-	movq	%r8, -328(%rbp)
-	movsd	-328(%rbp), %xmm4
-	movq	%rdi, -328(%rbp)
-	movsd	-328(%rbp), %xmm3
-	movq	%rsi, -328(%rbp)
-	movsd	-328(%rbp), %xmm2
-	movq	%rdx, -328(%rbp)
-	movsd	-328(%rbp), %xmm1
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	movq	%r9, -360(%rbp)
+	movsd	-360(%rbp), %xmm5
+	movq	%r8, -360(%rbp)
+	movsd	-360(%rbp), %xmm4
+	movq	%rdi, -360(%rbp)
+	movsd	-360(%rbp), %xmm3
+	movq	%rsi, -360(%rbp)
+	movsd	-360(%rbp), %xmm2
+	movq	%rdx, -360(%rbp)
+	movsd	-360(%rbp), %xmm1
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	%r11d, %edx
 	movl	%r10d, %esi
 	movl	$.LC47, %edi
@@ -1760,12 +1768,12 @@ main:
 	call	calloc
 	movq	%rax, cells(%rip)
 	.loc 3 96 0
-	movl	$0, -304(%rbp)
+	movl	$0, -336(%rbp)
 	jmp	.L73
 .L74:
 	.loc 3 98 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-304(%rbp), %eax
+	movl	-336(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -1775,7 +1783,7 @@ main:
 	movl	$0, (%rax)
 	.loc 3 99 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-304(%rbp), %eax
+	movl	-336(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -1786,7 +1794,7 @@ main:
 	movq	%rax, 40(%rdx)
 	.loc 3 100 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-304(%rbp), %eax
+	movl	-336(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -1797,7 +1805,7 @@ main:
 	movq	%rax, 48(%rdx)
 	.loc 3 101 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-304(%rbp), %eax
+	movl	-336(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -1808,7 +1816,7 @@ main:
 	movq	%rax, 16(%rdx)
 	.loc 3 102 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-304(%rbp), %eax
+	movl	-336(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -1819,7 +1827,7 @@ main:
 	movq	%rax, 24(%rdx)
 	.loc 3 103 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-304(%rbp), %eax
+	movl	-336(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -1830,7 +1838,7 @@ main:
 	movq	%rax, 32(%rdx)
 	.loc 3 104 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-304(%rbp), %eax
+	movl	-336(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -1841,7 +1849,7 @@ main:
 	movq	%rax, 56(%rdx)
 	.loc 3 105 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-304(%rbp), %eax
+	movl	-336(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -1852,7 +1860,7 @@ main:
 	movq	%rax, 64(%rdx)
 	.loc 3 106 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-304(%rbp), %eax
+	movl	-336(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -1863,7 +1871,7 @@ main:
 	movq	%rax, 72(%rdx)
 	.loc 3 107 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-304(%rbp), %eax
+	movl	-336(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -1873,49 +1881,49 @@ main:
 	movl	$0, %eax
 	movq	%rax, 80(%rdx)
 	.loc 3 96 0 discriminator 2
-	addl	$1, -304(%rbp)
+	addl	$1, -336(%rbp)
 .L73:
 	.loc 3 96 0 is_stmt 0 discriminator 1
 	movl	GV+24(%rip), %eax
-	cmpl	-304(%rbp), %eax
+	cmpl	-336(%rbp), %eax
 	jg	.L74
 	.loc 3 111 0 is_stmt 1
-	movl	$0, -304(%rbp)
+	movl	$0, -336(%rbp)
 	jmp	.L75
 .L76:
 	.loc 3 113 0 discriminator 2
 	movq	cells(%rip), %rsi
 	movq	part(%rip), %rax
-	movl	-304(%rbp), %edx
+	movl	-336(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movq	24(%rax), %rcx
 	movq	part(%rip), %rax
-	movl	-304(%rbp), %edx
+	movl	-336(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movq	16(%rax), %rdx
 	movq	part(%rip), %rax
-	movl	-304(%rbp), %edi
+	movl	-336(%rbp), %edi
 	movslq	%edi, %rdi
 	salq	$6, %rdi
 	addq	%rdi, %rax
 	movq	8(%rax), %rax
-	movl	-304(%rbp), %edi
-	movq	%rcx, -328(%rbp)
-	movsd	-328(%rbp), %xmm2
-	movq	%rdx, -328(%rbp)
-	movsd	-328(%rbp), %xmm1
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	movl	-336(%rbp), %edi
+	movq	%rcx, -360(%rbp)
+	movsd	-360(%rbp), %xmm2
+	movq	%rdx, -360(%rbp)
+	movsd	-360(%rbp), %xmm1
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	call	locateCell
 	.loc 3 111 0 discriminator 2
-	addl	$1, -304(%rbp)
+	addl	$1, -336(%rbp)
 .L75:
 	.loc 3 111 0 is_stmt 0 discriminator 1
-	cvtsi2sd	-304(%rbp), %xmm0
+	cvtsi2sd	-336(%rbp), %xmm0
 	movsd	GV+16(%rip), %xmm1
 	ucomisd	%xmm0, %xmm1
 	ja	.L76
@@ -1927,238 +1935,238 @@ main:
 	call	puts
 	.loc 3 121 0
 	movl	$0, %eax
+	movq	%rax, -80(%rbp)
+	movq	-80(%rbp), %rax
+	movq	%rax, -88(%rbp)
+	movq	-88(%rbp), %rax
+	movq	%rax, -96(%rbp)
+	.loc 3 122 0
+	movl	$0, %eax
 	movq	%rax, -48(%rbp)
 	movq	-48(%rbp), %rax
 	movq	%rax, -56(%rbp)
 	movq	-56(%rbp), %rax
 	movq	%rax, -64(%rbp)
-	.loc 3 122 0
-	movl	$0, %eax
-	movq	%rax, -16(%rbp)
-	movq	-16(%rbp), %rax
-	movq	%rax, -24(%rbp)
-	movq	-24(%rbp), %rax
-	movq	%rax, -32(%rbp)
 	.loc 3 123 0
-	movl	$0, -304(%rbp)
+	movl	$0, -336(%rbp)
 	jmp	.L77
 .L78:
 	.loc 3 125 0 discriminator 2
-	movsd	-64(%rbp), %xmm1
+	movsd	-96(%rbp), %xmm1
 	movsd	GV+40(%rip), %xmm2
 	movq	part(%rip), %rax
-	movl	-304(%rbp), %edx
+	movl	-336(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movsd	32(%rax), %xmm0
 	mulsd	%xmm2, %xmm0
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, -96(%rbp)
+	.loc 3 126 0 discriminator 2
+	movsd	-88(%rbp), %xmm1
+	movsd	GV+40(%rip), %xmm2
+	movq	part(%rip), %rax
+	movl	-336(%rbp), %edx
+	movslq	%edx, %rdx
+	salq	$6, %rdx
+	addq	%rdx, %rax
+	movsd	40(%rax), %xmm0
+	mulsd	%xmm2, %xmm0
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, -88(%rbp)
+	.loc 3 127 0 discriminator 2
+	movsd	-80(%rbp), %xmm1
+	movsd	GV+40(%rip), %xmm2
+	movq	part(%rip), %rax
+	movl	-336(%rbp), %edx
+	movslq	%edx, %rdx
+	salq	$6, %rdx
+	addq	%rdx, %rax
+	movsd	48(%rax), %xmm0
+	mulsd	%xmm2, %xmm0
+	addsd	%xmm1, %xmm0
+	movsd	%xmm0, -80(%rbp)
+	.loc 3 128 0 discriminator 2
+	movsd	-64(%rbp), %xmm1
+	movq	part(%rip), %rax
+	movl	-336(%rbp), %edx
+	movslq	%edx, %rdx
+	salq	$6, %rdx
+	addq	%rdx, %rax
+	movsd	32(%rax), %xmm0
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, -64(%rbp)
-	.loc 3 126 0 discriminator 2
+	.loc 3 129 0 discriminator 2
 	movsd	-56(%rbp), %xmm1
-	movsd	GV+40(%rip), %xmm2
 	movq	part(%rip), %rax
-	movl	-304(%rbp), %edx
+	movl	-336(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movsd	40(%rax), %xmm0
-	mulsd	%xmm2, %xmm0
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, -56(%rbp)
-	.loc 3 127 0 discriminator 2
+	.loc 3 130 0 discriminator 2
 	movsd	-48(%rbp), %xmm1
-	movsd	GV+40(%rip), %xmm2
 	movq	part(%rip), %rax
-	movl	-304(%rbp), %edx
+	movl	-336(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movsd	48(%rax), %xmm0
-	mulsd	%xmm2, %xmm0
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, -48(%rbp)
-	.loc 3 128 0 discriminator 2
-	movsd	-32(%rbp), %xmm1
-	movq	part(%rip), %rax
-	movl	-304(%rbp), %edx
-	movslq	%edx, %rdx
-	salq	$6, %rdx
-	addq	%rdx, %rax
-	movsd	32(%rax), %xmm0
-	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -32(%rbp)
-	.loc 3 129 0 discriminator 2
-	movsd	-24(%rbp), %xmm1
-	movq	part(%rip), %rax
-	movl	-304(%rbp), %edx
-	movslq	%edx, %rdx
-	salq	$6, %rdx
-	addq	%rdx, %rax
-	movsd	40(%rax), %xmm0
-	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -24(%rbp)
-	.loc 3 130 0 discriminator 2
-	movsd	-16(%rbp), %xmm1
-	movq	part(%rip), %rax
-	movl	-304(%rbp), %edx
-	movslq	%edx, %rdx
-	salq	$6, %rdx
-	addq	%rdx, %rax
-	movsd	48(%rax), %xmm0
-	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -16(%rbp)
 	.loc 3 123 0 discriminator 2
-	addl	$1, -304(%rbp)
+	addl	$1, -336(%rbp)
 .L77:
 	.loc 3 123 0 is_stmt 0 discriminator 1
-	cvtsi2sd	-304(%rbp), %xmm0
+	cvtsi2sd	-336(%rbp), %xmm0
 	movsd	GV+16(%rip), %xmm1
 	ucomisd	%xmm0, %xmm1
 	ja	.L78
 	.loc 3 133 0 is_stmt 1
+	movsd	-96(%rbp), %xmm0
+	movsd	GV+16(%rip), %xmm1
+	divsd	%xmm1, %xmm0
+	movsd	%xmm0, -96(%rbp)
+	.loc 3 134 0
+	movsd	-88(%rbp), %xmm0
+	movsd	GV+16(%rip), %xmm1
+	divsd	%xmm1, %xmm0
+	movsd	%xmm0, -88(%rbp)
+	.loc 3 135 0
+	movsd	-80(%rbp), %xmm0
+	movsd	GV+16(%rip), %xmm1
+	divsd	%xmm1, %xmm0
+	movsd	%xmm0, -80(%rbp)
+	.loc 3 136 0
 	movsd	-64(%rbp), %xmm0
 	movsd	GV+16(%rip), %xmm1
 	divsd	%xmm1, %xmm0
 	movsd	%xmm0, -64(%rbp)
-	.loc 3 134 0
+	.loc 3 137 0
 	movsd	-56(%rbp), %xmm0
 	movsd	GV+16(%rip), %xmm1
 	divsd	%xmm1, %xmm0
 	movsd	%xmm0, -56(%rbp)
-	.loc 3 135 0
+	.loc 3 138 0
 	movsd	-48(%rbp), %xmm0
 	movsd	GV+16(%rip), %xmm1
 	divsd	%xmm1, %xmm0
 	movsd	%xmm0, -48(%rbp)
-	.loc 3 136 0
-	movsd	-32(%rbp), %xmm0
-	movsd	GV+16(%rip), %xmm1
-	divsd	%xmm1, %xmm0
-	movsd	%xmm0, -32(%rbp)
-	.loc 3 137 0
-	movsd	-24(%rbp), %xmm0
-	movsd	GV+16(%rip), %xmm1
-	divsd	%xmm1, %xmm0
-	movsd	%xmm0, -24(%rbp)
-	.loc 3 138 0
-	movsd	-16(%rbp), %xmm0
-	movsd	GV+16(%rip), %xmm1
-	divsd	%xmm1, %xmm0
-	movsd	%xmm0, -16(%rbp)
 	.loc 3 140 0
-	movq	-64(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	movq	-96(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC49, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 141 0
-	movq	-56(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	movq	-88(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC50, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 142 0
-	movq	-48(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	movq	-80(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC51, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 143 0
-	movq	-32(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	movq	-64(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC52, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 144 0
-	movq	-24(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	movq	-56(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC53, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 145 0
-	movq	-16(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	movq	-48(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC54, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 147 0
-	movsd	-32(%rbp), %xmm1
-	movsd	-32(%rbp), %xmm0
+	movsd	-64(%rbp), %xmm1
+	movsd	-64(%rbp), %xmm0
 	mulsd	%xmm0, %xmm1
-	movsd	-24(%rbp), %xmm2
-	movsd	-24(%rbp), %xmm0
+	movsd	-56(%rbp), %xmm2
+	movsd	-56(%rbp), %xmm0
 	mulsd	%xmm2, %xmm0
 	addsd	%xmm0, %xmm1
-	movsd	-16(%rbp), %xmm2
-	movsd	-16(%rbp), %xmm0
+	movsd	-48(%rbp), %xmm2
+	movsd	-48(%rbp), %xmm0
 	mulsd	%xmm2, %xmm0
 	addsd	%xmm1, %xmm0
 	call	sqrt
-	movsd	%xmm0, -328(%rbp)
-	movq	-328(%rbp), %rax
-	movq	%rax, -224(%rbp)
+	movsd	%xmm0, -360(%rbp)
+	movq	-360(%rbp), %rax
+	movq	%rax, -256(%rbp)
 	.loc 3 148 0
-	movq	-224(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	movq	-256(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC55, %edi
 	movl	$1, %eax
 	call	printf
 	.loc 3 152 0
-	movl	$0, -304(%rbp)
+	movl	$0, -336(%rbp)
 	jmp	.L79
 .L98:
 	.loc 3 153 0
-	movl	$0, -300(%rbp)
+	movl	$0, -332(%rbp)
 	jmp	.L80
 .L97:
 	.loc 3 154 0
-	movl	$0, -296(%rbp)
+	movl	$0, -328(%rbp)
 	jmp	.L81
 .L96:
 	.loc 3 157 0
 	movl	GV(%rip), %edx
 	movl	GV(%rip), %eax
-	imull	-304(%rbp), %eax
+	imull	-336(%rbp), %eax
 	movl	%eax, %ecx
-	movl	-300(%rbp), %eax
+	movl	-332(%rbp), %eax
 	addl	%ecx, %eax
 	imull	%eax, %edx
-	movl	-296(%rbp), %eax
+	movl	-328(%rbp), %eax
 	addl	%edx, %eax
-	movl	%eax, -272(%rbp)
+	movl	%eax, -304(%rbp)
 	.loc 3 160 0
 	movsd	GV+56(%rip), %xmm1
-	cvtsi2sd	-304(%rbp), %xmm0
+	cvtsi2sd	-336(%rbp), %xmm0
 	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
-	movsd	%xmm0, -216(%rbp)
+	movsd	%xmm0, -248(%rbp)
 	.loc 3 161 0
 	movsd	GV+56(%rip), %xmm1
-	cvtsi2sd	-300(%rbp), %xmm0
+	cvtsi2sd	-332(%rbp), %xmm0
 	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
-	movsd	%xmm0, -208(%rbp)
+	movsd	%xmm0, -240(%rbp)
 	.loc 3 162 0
 	movsd	GV+56(%rip), %xmm1
-	cvtsi2sd	-296(%rbp), %xmm0
+	cvtsi2sd	-328(%rbp), %xmm0
 	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
-	movsd	%xmm0, -200(%rbp)
+	movsd	%xmm0, -232(%rbp)
 	.loc 3 165 0
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2166,14 +2174,14 @@ main:
 	movq	%rcx, %rax
 	addq	%rdx, %rax
 	movl	(%rax), %eax
-	movl	%eax, -268(%rbp)
+	movl	%eax, -300(%rbp)
 	.loc 3 176 0
-	movl	$0, -292(%rbp)
+	movl	$0, -324(%rbp)
 	jmp	.L82
 .L95:
 	.loc 3 178 0
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2181,186 +2189,200 @@ main:
 	movq	%rcx, %rax
 	addq	%rdx, %rax
 	movq	8(%rax), %rax
-	movl	-292(%rbp), %edx
+	movl	-324(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$3, %rdx
 	addq	%rdx, %rax
 	movq	(%rax), %rax
-	movl	%eax, -264(%rbp)
+	movl	%eax, -296(%rbp)
 	.loc 3 181 0
 	movq	part(%rip), %rax
-	movl	-264(%rbp), %edx
+	movl	-296(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movq	8(%rax), %rax
-	movq	%rax, -192(%rbp)
+	movq	%rax, -224(%rbp)
 	.loc 3 182 0
 	movq	part(%rip), %rax
-	movl	-264(%rbp), %edx
+	movl	-296(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movq	16(%rax), %rax
-	movq	%rax, -184(%rbp)
+	movq	%rax, -216(%rbp)
 	.loc 3 183 0
 	movq	part(%rip), %rax
-	movl	-264(%rbp), %edx
+	movl	-296(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movq	24(%rax), %rax
-	movq	%rax, -176(%rbp)
+	movq	%rax, -208(%rbp)
 	.loc 3 186 0
 	movq	part(%rip), %rax
-	movl	-264(%rbp), %edx
+	movl	-296(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movq	32(%rax), %rax
-	movq	%rax, -168(%rbp)
+	movq	%rax, -200(%rbp)
 	.loc 3 187 0
 	movq	part(%rip), %rax
-	movl	-264(%rbp), %edx
+	movl	-296(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movq	40(%rax), %rax
-	movq	%rax, -160(%rbp)
+	movq	%rax, -192(%rbp)
 	.loc 3 188 0
 	movq	part(%rip), %rax
-	movl	-264(%rbp), %edx
+	movl	-296(%rbp), %edx
 	movslq	%edx, %rdx
 	salq	$6, %rdx
 	addq	%rdx, %rax
 	movq	48(%rax), %rax
-	movq	%rax, -152(%rbp)
+	movq	%rax, -184(%rbp)
 	.loc 3 204 0
-	movl	$-1, -288(%rbp)
+	movl	$-1, -320(%rbp)
 	jmp	.L83
 .L94:
 	.loc 3 205 0
-	movl	$-1, -284(%rbp)
+	movl	$-1, -316(%rbp)
 	jmp	.L84
 .L93:
 	.loc 3 206 0
-	movl	$-1, -280(%rbp)
+	movl	$-1, -312(%rbp)
 	jmp	.L85
 .L92:
-	.loc 3 216 0
-	movl	-288(%rbp), %eax
-	movl	-304(%rbp), %edx
+	.loc 3 215 0
+	movl	-320(%rbp), %eax
+	movl	-336(%rbp), %edx
 	addl	%edx, %eax
 	testl	%eax, %eax
 	js	.L86
-	.loc 3 216 0 is_stmt 0 discriminator 1
-	movl	-288(%rbp), %eax
-	movl	-304(%rbp), %edx
+	.loc 3 215 0 is_stmt 0 discriminator 1
+	movl	-320(%rbp), %eax
+	movl	-336(%rbp), %edx
 	addl	%eax, %edx
 	movl	GV(%rip), %eax
 	cmpl	%eax, %edx
 	jle	.L87
 .L86:
-	.loc 3 218 0 is_stmt 1
-	movl	$0, -288(%rbp)
+	.loc 3 217 0 is_stmt 1
+	movl	$0, -320(%rbp)
 .L87:
-	.loc 3 221 0
-	movl	-284(%rbp), %eax
-	movl	-300(%rbp), %edx
+	.loc 3 220 0
+	movl	-316(%rbp), %eax
+	movl	-332(%rbp), %edx
 	addl	%edx, %eax
 	testl	%eax, %eax
 	js	.L88
-	.loc 3 221 0 is_stmt 0 discriminator 1
-	movl	-288(%rbp), %eax
-	movl	-304(%rbp), %edx
+	.loc 3 220 0 is_stmt 0 discriminator 1
+	movl	-320(%rbp), %eax
+	movl	-336(%rbp), %edx
 	addl	%eax, %edx
 	movl	GV(%rip), %eax
 	cmpl	%eax, %edx
 	jle	.L89
 .L88:
-	.loc 3 223 0 is_stmt 1
-	movl	$0, -284(%rbp)
+	.loc 3 222 0 is_stmt 1
+	movl	$0, -316(%rbp)
 .L89:
-	.loc 3 226 0
-	movl	-280(%rbp), %eax
-	movl	-296(%rbp), %edx
+	.loc 3 225 0
+	movl	-312(%rbp), %eax
+	movl	-328(%rbp), %edx
 	addl	%edx, %eax
 	testl	%eax, %eax
 	js	.L90
-	.loc 3 226 0 is_stmt 0 discriminator 1
-	movl	-288(%rbp), %eax
-	movl	-304(%rbp), %edx
+	.loc 3 225 0 is_stmt 0 discriminator 1
+	movl	-320(%rbp), %eax
+	movl	-336(%rbp), %edx
 	addl	%eax, %edx
 	movl	GV(%rip), %eax
 	cmpl	%eax, %edx
 	jle	.L91
 .L90:
-	.loc 3 228 0 is_stmt 1
-	movl	$0, -280(%rbp)
+	.loc 3 227 0 is_stmt 1
+	movl	$0, -312(%rbp)
 .L91:
-	.loc 3 230 0
-	movl	-280(%rbp), %eax
-	movl	-296(%rbp), %edx
-	leal	(%rdx,%rax), %edi
-	movl	GV(%rip), %eax
-	movl	-284(%rbp), %edx
-	movl	-300(%rbp), %ecx
-	leal	(%rcx,%rdx), %r8d
-	movl	GV(%rip), %edx
-	movl	-288(%rbp), %ecx
-	movl	-304(%rbp), %esi
-	addl	%esi, %ecx
-	imull	%ecx, %edx
-	addl	%r8d, %edx
-	imull	%edx, %eax
-	addl	%edi, %eax
-	movl	%eax, -260(%rbp)
 	.loc 3 231 0
-	movsd	GV+56(%rip), %xmm2
-	cvtsi2sd	-304(%rbp), %xmm0
-	movsd	.LC56(%rip), %xmm1
-	addsd	%xmm0, %xmm1
-	cvtsi2sd	-288(%rbp), %xmm0
-	addsd	%xmm1, %xmm0
-	mulsd	%xmm2, %xmm0
-	movsd	%xmm0, -216(%rbp)
+	movl	GV(%rip), %eax
+	movl	-312(%rbp), %edx
+	movl	-328(%rbp), %ecx
+	addl	%ecx, %edx
+	movl	%eax, %esi
+	movl	%edx, %edi
+	call	mod
+	movl	%eax, %ebx
+	movl	GV(%rip), %r13d
+	movl	GV(%rip), %eax
+	movl	-316(%rbp), %edx
+	movl	-332(%rbp), %ecx
+	addl	%ecx, %edx
+	movl	%eax, %esi
+	movl	%edx, %edi
+	call	mod
+	movl	%eax, %r12d
+	movl	GV(%rip), %r14d
+	movl	GV(%rip), %eax
+	movl	-320(%rbp), %edx
+	movl	-336(%rbp), %ecx
+	addl	%ecx, %edx
+	movl	%eax, %esi
+	movl	%edx, %edi
+	call	mod
+	imull	%r14d, %eax
+	addl	%r12d, %eax
+	imull	%r13d, %eax
+	addl	%ebx, %eax
+	movl	%eax, -292(%rbp)
 	.loc 3 232 0
 	movsd	GV+56(%rip), %xmm2
-	cvtsi2sd	-300(%rbp), %xmm0
+	cvtsi2sd	-336(%rbp), %xmm0
 	movsd	.LC56(%rip), %xmm1
 	addsd	%xmm0, %xmm1
-	cvtsi2sd	-284(%rbp), %xmm0
+	cvtsi2sd	-320(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
 	mulsd	%xmm2, %xmm0
-	movsd	%xmm0, -208(%rbp)
+	movsd	%xmm0, -248(%rbp)
 	.loc 3 233 0
 	movsd	GV+56(%rip), %xmm2
-	cvtsi2sd	-296(%rbp), %xmm0
+	cvtsi2sd	-332(%rbp), %xmm0
 	movsd	.LC56(%rip), %xmm1
 	addsd	%xmm0, %xmm1
-	cvtsi2sd	-280(%rbp), %xmm0
+	cvtsi2sd	-316(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
 	mulsd	%xmm2, %xmm0
-	movsd	%xmm0, -200(%rbp)
-	.loc 3 236 0
-	movq	GV+56(%rip), %rax
-	movsd	-200(%rbp), %xmm0
-	movapd	%xmm0, %xmm2
-	subsd	-176(%rbp), %xmm2
-	movsd	-208(%rbp), %xmm0
-	movapd	%xmm0, %xmm1
-	subsd	-184(%rbp), %xmm1
-	movsd	-216(%rbp), %xmm0
-	subsd	-192(%rbp), %xmm0
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm3
-	call	W
-	movsd	%xmm0, -328(%rbp)
-	movq	-328(%rbp), %rax
-	movq	%rax, -144(%rbp)
+	movsd	%xmm0, -240(%rbp)
+	.loc 3 234 0
+	movsd	GV+56(%rip), %xmm2
+	cvtsi2sd	-328(%rbp), %xmm0
+	movsd	.LC56(%rip), %xmm1
+	addsd	%xmm0, %xmm1
+	cvtsi2sd	-312(%rbp), %xmm0
+	addsd	%xmm1, %xmm0
+	mulsd	%xmm2, %xmm0
+	movsd	%xmm0, -232(%rbp)
 	.loc 3 237 0
+	movq	GV+56(%rip), %rax
+	movsd	-232(%rbp), %xmm0
+	movapd	%xmm0, %xmm2
+	subsd	-208(%rbp), %xmm2
+	movsd	-240(%rbp), %xmm0
+	movapd	%xmm0, %xmm1
+	subsd	-216(%rbp), %xmm1
+	movsd	-248(%rbp), %xmm0
+	subsd	-224(%rbp), %xmm0
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm3
+	call	W
+	movsd	%xmm0, -360(%rbp)
+	movq	-360(%rbp), %rax
+	movq	%rax, -176(%rbp)
+	.loc 3 238 0
 	movq	cells(%rip), %rdx
-	movl	-260(%rbp), %eax
+	movl	-292(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2368,7 +2390,7 @@ main:
 	movq	%rcx, %rax
 	addq	%rax, %rdx
 	movq	cells(%rip), %rcx
-	movl	-260(%rbp), %eax
+	movl	-292(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rsi
@@ -2377,12 +2399,12 @@ main:
 	addq	%rcx, %rax
 	movsd	48(%rax), %xmm1
 	movsd	GV+40(%rip), %xmm0
-	mulsd	-144(%rbp), %xmm0
+	mulsd	-176(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 48(%rdx)
-	.loc 3 245 0
+	.loc 3 246 0
 	movq	cells(%rip), %rdx
-	movl	-260(%rbp), %eax
+	movl	-292(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2390,7 +2412,7 @@ main:
 	movq	%rcx, %rax
 	addq	%rax, %rdx
 	movq	cells(%rip), %rcx
-	movl	-260(%rbp), %eax
+	movl	-292(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rsi
@@ -2398,13 +2420,13 @@ main:
 	movq	%rsi, %rax
 	addq	%rcx, %rax
 	movsd	56(%rax), %xmm1
-	movsd	-168(%rbp), %xmm0
-	mulsd	-144(%rbp), %xmm0
+	movsd	-200(%rbp), %xmm0
+	mulsd	-176(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 56(%rdx)
-	.loc 3 246 0
+	.loc 3 247 0
 	movq	cells(%rip), %rdx
-	movl	-260(%rbp), %eax
+	movl	-292(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2412,7 +2434,7 @@ main:
 	movq	%rcx, %rax
 	addq	%rax, %rdx
 	movq	cells(%rip), %rcx
-	movl	-260(%rbp), %eax
+	movl	-292(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rsi
@@ -2420,13 +2442,13 @@ main:
 	movq	%rsi, %rax
 	addq	%rcx, %rax
 	movsd	64(%rax), %xmm1
-	movsd	-160(%rbp), %xmm0
-	mulsd	-144(%rbp), %xmm0
+	movsd	-192(%rbp), %xmm0
+	mulsd	-176(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 64(%rdx)
-	.loc 3 247 0
+	.loc 3 248 0
 	movq	cells(%rip), %rdx
-	movl	-260(%rbp), %eax
+	movl	-292(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2434,7 +2456,7 @@ main:
 	movq	%rcx, %rax
 	addq	%rax, %rdx
 	movq	cells(%rip), %rcx
-	movl	-260(%rbp), %eax
+	movl	-292(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rsi
@@ -2442,13 +2464,13 @@ main:
 	movq	%rsi, %rax
 	addq	%rcx, %rax
 	movsd	72(%rax), %xmm1
-	movsd	-152(%rbp), %xmm0
-	mulsd	-144(%rbp), %xmm0
+	movsd	-184(%rbp), %xmm0
+	mulsd	-176(%rbp), %xmm0
 	addsd	%xmm1, %xmm0
 	movsd	%xmm0, 72(%rdx)
-	.loc 3 248 0
+	.loc 3 249 0
 	movq	cells(%rip), %rdx
-	movl	-260(%rbp), %eax
+	movl	-292(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2456,7 +2478,7 @@ main:
 	movq	%rcx, %rax
 	addq	%rax, %rdx
 	movq	cells(%rip), %rcx
-	movl	-260(%rbp), %eax
+	movl	-292(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rsi
@@ -2464,88 +2486,88 @@ main:
 	movq	%rsi, %rax
 	addq	%rcx, %rax
 	movsd	80(%rax), %xmm0
-	addsd	-144(%rbp), %xmm0
+	addsd	-176(%rbp), %xmm0
 	movsd	%xmm0, 80(%rdx)
 	.loc 3 206 0
-	addl	$1, -280(%rbp)
+	addl	$1, -312(%rbp)
 .L85:
 	.loc 3 206 0 is_stmt 0 discriminator 1
-	cmpl	$1, -280(%rbp)
+	cmpl	$1, -312(%rbp)
 	jle	.L92
 	.loc 3 205 0 is_stmt 1
-	addl	$1, -284(%rbp)
+	addl	$1, -316(%rbp)
 .L84:
 	.loc 3 205 0 is_stmt 0 discriminator 1
-	cmpl	$1, -284(%rbp)
+	cmpl	$1, -316(%rbp)
 	jle	.L93
 	.loc 3 204 0 is_stmt 1
-	addl	$1, -288(%rbp)
+	addl	$1, -320(%rbp)
 .L83:
 	.loc 3 204 0 is_stmt 0 discriminator 1
-	cmpl	$1, -288(%rbp)
+	cmpl	$1, -320(%rbp)
 	jle	.L94
 	.loc 3 176 0 is_stmt 1
-	addl	$1, -292(%rbp)
+	addl	$1, -324(%rbp)
 .L82:
 	.loc 3 176 0 is_stmt 0 discriminator 1
-	movl	-292(%rbp), %eax
-	cmpl	-268(%rbp), %eax
+	movl	-324(%rbp), %eax
+	cmpl	-300(%rbp), %eax
 	jl	.L95
 	.loc 3 154 0 is_stmt 1
-	addl	$1, -296(%rbp)
+	addl	$1, -328(%rbp)
 .L81:
 	.loc 3 154 0 is_stmt 0 discriminator 1
 	movl	GV(%rip), %eax
-	cmpl	-296(%rbp), %eax
+	cmpl	-328(%rbp), %eax
 	jg	.L96
 	.loc 3 153 0 is_stmt 1
-	addl	$1, -300(%rbp)
+	addl	$1, -332(%rbp)
 .L80:
 	.loc 3 153 0 is_stmt 0 discriminator 1
 	movl	GV(%rip), %eax
-	cmpl	-300(%rbp), %eax
+	cmpl	-332(%rbp), %eax
 	jg	.L97
 	.loc 3 152 0 is_stmt 1
-	addl	$1, -304(%rbp)
+	addl	$1, -336(%rbp)
 .L79:
 	.loc 3 152 0 is_stmt 0 discriminator 1
 	movl	GV(%rip), %eax
-	cmpl	-304(%rbp), %eax
+	cmpl	-336(%rbp), %eax
 	jg	.L98
-	.loc 3 284 0 is_stmt 1
+	.loc 3 285 0 is_stmt 1
 	movsd	GV+1088(%rip), %xmm1
 	movl	GV+24(%rip), %eax
 	cvtsi2sd	%eax, %xmm0
 	movsd	GV+16(%rip), %xmm2
 	divsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
-	movsd	%xmm0, -136(%rbp)
-	.loc 3 285 0
-	movl	$0, -304(%rbp)
+	movsd	%xmm0, -168(%rbp)
+	.loc 3 286 0
+	movl	$0, -336(%rbp)
 	jmp	.L99
 .L104:
-	.loc 3 286 0
-	movl	$0, -300(%rbp)
+	.loc 3 287 0
+	movl	$0, -332(%rbp)
 	jmp	.L100
 .L103:
-	.loc 3 287 0
-	movl	$0, -296(%rbp)
+	.loc 3 288 0
+	movl	$0, -328(%rbp)
 	jmp	.L101
 .L102:
-	.loc 3 289 0 discriminator 2
+	.loc 3 290 0 discriminator 2
 	movl	GV(%rip), %edx
 	movl	GV(%rip), %eax
-	imull	-304(%rbp), %eax
+	imull	-336(%rbp), %eax
 	movl	%eax, %ecx
-	movl	-300(%rbp), %eax
+	movl	-332(%rbp), %eax
 	addl	%ecx, %eax
 	imull	%eax, %edx
-	movl	-296(%rbp), %eax
+	movl	-328(%rbp), %eax
 	addl	%edx, %eax
-	movl	%eax, -272(%rbp)
-	.loc 3 300 0 discriminator 2
+	movl	%eax, -304(%rbp)
+	.loc 3 301 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2553,7 +2575,7 @@ main:
 	movq	%rcx, %rax
 	addq	%rax, %rdx
 	movq	cells(%rip), %rcx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rsi
@@ -2561,11 +2583,11 @@ main:
 	movq	%rsi, %rax
 	addq	%rcx, %rax
 	movsd	56(%rax), %xmm0
-	mulsd	-136(%rbp), %xmm0
+	mulsd	-168(%rbp), %xmm0
 	movsd	%xmm0, 56(%rdx)
-	.loc 3 301 0 discriminator 2
+	.loc 3 302 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2573,7 +2595,7 @@ main:
 	movq	%rcx, %rax
 	addq	%rax, %rdx
 	movq	cells(%rip), %rcx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rsi
@@ -2581,11 +2603,11 @@ main:
 	movq	%rsi, %rax
 	addq	%rcx, %rax
 	movsd	64(%rax), %xmm0
-	mulsd	-136(%rbp), %xmm0
+	mulsd	-168(%rbp), %xmm0
 	movsd	%xmm0, 64(%rdx)
-	.loc 3 302 0 discriminator 2
+	.loc 3 303 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2593,7 +2615,7 @@ main:
 	movq	%rcx, %rax
 	addq	%rax, %rdx
 	movq	cells(%rip), %rcx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rsi
@@ -2601,11 +2623,11 @@ main:
 	movq	%rsi, %rax
 	addq	%rcx, %rax
 	movsd	72(%rax), %xmm0
-	mulsd	-136(%rbp), %xmm0
+	mulsd	-168(%rbp), %xmm0
 	movsd	%xmm0, 72(%rdx)
-	.loc 3 305 0 discriminator 2
+	.loc 3 306 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2613,7 +2635,7 @@ main:
 	movq	%rcx, %rax
 	addq	%rax, %rdx
 	movq	cells(%rip), %rcx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rsi
@@ -2624,77 +2646,77 @@ main:
 	movsd	GV+48(%rip), %xmm1
 	divsd	%xmm1, %xmm0
 	movsd	%xmm0, 48(%rdx)
-	.loc 3 287 0 discriminator 2
-	addl	$1, -296(%rbp)
+	.loc 3 288 0 discriminator 2
+	addl	$1, -328(%rbp)
 .L101:
+	.loc 3 288 0 is_stmt 0 discriminator 1
+	movl	GV(%rip), %eax
+	cmpl	-328(%rbp), %eax
+	jg	.L102
+	.loc 3 287 0 is_stmt 1
+	addl	$1, -332(%rbp)
+.L100:
 	.loc 3 287 0 is_stmt 0 discriminator 1
 	movl	GV(%rip), %eax
-	cmpl	-296(%rbp), %eax
-	jg	.L102
+	cmpl	-332(%rbp), %eax
+	jg	.L103
 	.loc 3 286 0 is_stmt 1
-	addl	$1, -300(%rbp)
-.L100:
+	addl	$1, -336(%rbp)
+.L99:
 	.loc 3 286 0 is_stmt 0 discriminator 1
 	movl	GV(%rip), %eax
-	cmpl	-300(%rbp), %eax
-	jg	.L103
-	.loc 3 285 0 is_stmt 1
-	addl	$1, -304(%rbp)
-.L99:
-	.loc 3 285 0 is_stmt 0 discriminator 1
-	movl	GV(%rip), %eax
-	cmpl	-304(%rbp), %eax
+	cmpl	-336(%rbp), %eax
 	jg	.L104
-	.loc 3 309 0 is_stmt 1
-	movq	-136(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	.loc 3 310 0 is_stmt 1
+	movq	-168(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC57, %edi
 	movl	$1, %eax
 	call	printf
-	.loc 3 314 0
+	.loc 3 315 0
+	movl	$0, %eax
+	movq	%rax, -144(%rbp)
+	movq	-144(%rbp), %rax
+	movq	%rax, -152(%rbp)
+	movq	-152(%rbp), %rax
+	movq	%rax, -160(%rbp)
+	.loc 3 316 0
 	movl	$0, %eax
 	movq	%rax, -112(%rbp)
 	movq	-112(%rbp), %rax
 	movq	%rax, -120(%rbp)
 	movq	-120(%rbp), %rax
 	movq	%rax, -128(%rbp)
-	.loc 3 315 0
-	movl	$0, %eax
-	movq	%rax, -80(%rbp)
-	movq	-80(%rbp), %rax
-	movq	%rax, -88(%rbp)
-	movq	-88(%rbp), %rax
-	movq	%rax, -96(%rbp)
-	.loc 3 316 0
+	.loc 3 317 0
 	movl	$.LC58, %edi
 	call	puts
-	.loc 3 319 0
-	movl	$0, -304(%rbp)
+	.loc 3 320 0
+	movl	$0, -336(%rbp)
 	jmp	.L105
 .L110:
-	.loc 3 321 0
-	movl	$0, -300(%rbp)
+	.loc 3 322 0
+	movl	$0, -332(%rbp)
 	jmp	.L106
 .L109:
-	.loc 3 323 0
-	movl	$0, -296(%rbp)
+	.loc 3 324 0
+	movl	$0, -328(%rbp)
 	jmp	.L107
 .L108:
-	.loc 3 326 0 discriminator 2
+	.loc 3 327 0 discriminator 2
 	movl	GV(%rip), %edx
 	movl	GV(%rip), %eax
-	imull	-304(%rbp), %eax
+	imull	-336(%rbp), %eax
 	movl	%eax, %ecx
-	movl	-300(%rbp), %eax
+	movl	-332(%rbp), %eax
 	addl	%ecx, %eax
 	imull	%eax, %edx
-	movl	-296(%rbp), %eax
+	movl	-328(%rbp), %eax
 	addl	%edx, %eax
-	movl	%eax, -272(%rbp)
-	.loc 3 329 0 discriminator 2
+	movl	%eax, -304(%rbp)
+	.loc 3 330 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2702,14 +2724,14 @@ main:
 	movq	%rcx, %rax
 	addq	%rdx, %rax
 	movsd	GV+56(%rip), %xmm1
-	cvtsi2sd	-304(%rbp), %xmm0
+	cvtsi2sd	-336(%rbp), %xmm0
 	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, 88(%rax)
-	.loc 3 330 0 discriminator 2
+	.loc 3 331 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2717,14 +2739,14 @@ main:
 	movq	%rcx, %rax
 	addq	%rdx, %rax
 	movsd	GV+56(%rip), %xmm1
-	cvtsi2sd	-300(%rbp), %xmm0
+	cvtsi2sd	-332(%rbp), %xmm0
 	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, 96(%rax)
-	.loc 3 331 0 discriminator 2
+	.loc 3 332 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2732,15 +2754,15 @@ main:
 	movq	%rcx, %rax
 	addq	%rdx, %rax
 	movsd	GV+56(%rip), %xmm1
-	cvtsi2sd	-296(%rbp), %xmm0
+	cvtsi2sd	-328(%rbp), %xmm0
 	movsd	.LC56(%rip), %xmm2
 	addsd	%xmm2, %xmm0
 	mulsd	%xmm1, %xmm0
 	movsd	%xmm0, 104(%rax)
-	.loc 3 334 0 discriminator 2
+	.loc 3 335 0 discriminator 2
 	movsd	GV+48(%rip), %xmm1
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2749,12 +2771,12 @@ main:
 	addq	%rdx, %rax
 	movsd	48(%rax), %xmm0
 	mulsd	%xmm1, %xmm0
-	movsd	-256(%rbp), %xmm1
+	movsd	-288(%rbp), %xmm1
 	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -256(%rbp)
-	.loc 3 338 0 discriminator 2
+	movsd	%xmm0, -288(%rbp)
+	.loc 3 339 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2762,11 +2784,11 @@ main:
 	movq	%rcx, %rax
 	addq	%rdx, %rax
 	movl	(%rax), %eax
-	addl	%eax, -276(%rbp)
-	.loc 3 339 0 discriminator 2
-	movsd	-96(%rbp), %xmm1
+	addl	%eax, -308(%rbp)
+	.loc 3 340 0 discriminator 2
+	movsd	-128(%rbp), %xmm1
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2775,11 +2797,11 @@ main:
 	addq	%rdx, %rax
 	movsd	16(%rax), %xmm0
 	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -96(%rbp)
-	.loc 3 340 0 discriminator 2
-	movsd	-88(%rbp), %xmm1
+	movsd	%xmm0, -128(%rbp)
+	.loc 3 341 0 discriminator 2
+	movsd	-120(%rbp), %xmm1
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2788,11 +2810,11 @@ main:
 	addq	%rdx, %rax
 	movsd	24(%rax), %xmm0
 	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -88(%rbp)
-	.loc 3 341 0 discriminator 2
-	movsd	-80(%rbp), %xmm1
+	movsd	%xmm0, -120(%rbp)
+	.loc 3 342 0 discriminator 2
+	movsd	-112(%rbp), %xmm1
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2801,11 +2823,11 @@ main:
 	addq	%rdx, %rax
 	movsd	32(%rax), %xmm0
 	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -80(%rbp)
-	.loc 3 342 0 discriminator 2
-	movsd	-128(%rbp), %xmm1
+	movsd	%xmm0, -112(%rbp)
+	.loc 3 343 0 discriminator 2
+	movsd	-160(%rbp), %xmm1
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2814,11 +2836,11 @@ main:
 	addq	%rdx, %rax
 	movsd	56(%rax), %xmm0
 	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -128(%rbp)
-	.loc 3 343 0 discriminator 2
-	movsd	-120(%rbp), %xmm1
+	movsd	%xmm0, -160(%rbp)
+	.loc 3 344 0 discriminator 2
+	movsd	-152(%rbp), %xmm1
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2827,11 +2849,11 @@ main:
 	addq	%rdx, %rax
 	movsd	64(%rax), %xmm0
 	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -120(%rbp)
-	.loc 3 344 0 discriminator 2
-	movsd	-112(%rbp), %xmm1
+	movsd	%xmm0, -152(%rbp)
+	.loc 3 345 0 discriminator 2
+	movsd	-144(%rbp), %xmm1
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2840,10 +2862,10 @@ main:
 	addq	%rdx, %rax
 	movsd	72(%rax), %xmm0
 	addsd	%xmm1, %xmm0
-	movsd	%xmm0, -112(%rbp)
-	.loc 3 347 0 discriminator 2
+	movsd	%xmm0, -144(%rbp)
+	.loc 3 348 0 discriminator 2
 	movq	cells(%rip), %rdx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rcx
@@ -2851,7 +2873,7 @@ main:
 	movq	%rcx, %rax
 	addq	%rax, %rdx
 	movq	cells(%rip), %rcx
-	movl	-272(%rbp), %eax
+	movl	-304(%rbp), %eax
 	cltq
 	salq	$4, %rax
 	leaq	0(,%rax,8), %rsi
@@ -2864,106 +2886,111 @@ main:
 	movsd	.LC23(%rip), %xmm1
 	subsd	%xmm1, %xmm0
 	movsd	%xmm0, 40(%rdx)
-	.loc 3 323 0 discriminator 2
-	addl	$1, -296(%rbp)
+	.loc 3 324 0 discriminator 2
+	addl	$1, -328(%rbp)
 .L107:
-	.loc 3 323 0 is_stmt 0 discriminator 1
+	.loc 3 324 0 is_stmt 0 discriminator 1
 	movl	GV(%rip), %eax
-	cmpl	-296(%rbp), %eax
+	cmpl	-328(%rbp), %eax
 	jg	.L108
-	.loc 3 321 0 is_stmt 1
-	addl	$1, -300(%rbp)
+	.loc 3 322 0 is_stmt 1
+	addl	$1, -332(%rbp)
 .L106:
-	.loc 3 321 0 is_stmt 0 discriminator 1
+	.loc 3 322 0 is_stmt 0 discriminator 1
 	movl	GV(%rip), %eax
-	cmpl	-300(%rbp), %eax
+	cmpl	-332(%rbp), %eax
 	jg	.L109
-	.loc 3 319 0 is_stmt 1
-	addl	$1, -304(%rbp)
+	.loc 3 320 0 is_stmt 1
+	addl	$1, -336(%rbp)
 .L105:
-	.loc 3 319 0 is_stmt 0 discriminator 1
+	.loc 3 320 0 is_stmt 0 discriminator 1
 	movl	GV(%rip), %eax
-	cmpl	-304(%rbp), %eax
+	cmpl	-336(%rbp), %eax
 	jg	.L110
-	.loc 3 367 0 is_stmt 1
+	.loc 3 368 0 is_stmt 1
 	movl	$.LC59, %edi
 	call	puts
-	.loc 3 368 0
+	.loc 3 369 0
 	call	write_binary
-	.loc 3 372 0
-	movl	-276(%rbp), %eax
+	.loc 3 373 0
+	movl	-308(%rbp), %eax
 	movl	%eax, %esi
 	movl	$.LC60, %edi
 	movl	$0, %eax
 	call	printf
-	.loc 3 373 0
-	movq	-256(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	.loc 3 374 0
+	movq	-288(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC61, %edi
 	movl	$1, %eax
 	call	printf
-	.loc 3 374 0
+	.loc 3 375 0
 	movsd	GV+16(%rip), %xmm1
 	movsd	GV+40(%rip), %xmm0
 	mulsd	%xmm1, %xmm0
 	movl	$.LC62, %edi
 	movl	$1, %eax
 	call	printf
-	.loc 3 375 0
-	movq	-128(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	.loc 3 376 0
+	movq	-160(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC63, %edi
 	movl	$1, %eax
 	call	printf
-	.loc 3 376 0
-	movq	-120(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	.loc 3 377 0
+	movq	-152(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC64, %edi
 	movl	$1, %eax
 	call	printf
-	.loc 3 377 0
-	movq	-112(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	.loc 3 378 0
+	movq	-144(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC65, %edi
 	movl	$1, %eax
 	call	printf
-	.loc 3 378 0
-	movq	-96(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	.loc 3 379 0
+	movq	-128(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC66, %edi
 	movl	$1, %eax
 	call	printf
-	.loc 3 379 0
-	movq	-88(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	.loc 3 380 0
+	movq	-120(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC67, %edi
 	movl	$1, %eax
 	call	printf
-	.loc 3 380 0
-	movq	-80(%rbp), %rax
-	movq	%rax, -328(%rbp)
-	movsd	-328(%rbp), %xmm0
+	.loc 3 381 0
+	movq	-112(%rbp), %rax
+	movq	%rax, -360(%rbp)
+	movsd	-360(%rbp), %xmm0
 	movl	$.LC68, %edi
 	movl	$1, %eax
 	call	printf
-	.loc 3 383 0
+	.loc 3 384 0
 	movq	part(%rip), %rax
 	movq	%rax, %rdi
 	call	free
-	.loc 3 384 0
+	.loc 3 385 0
 	movq	cells(%rip), %rax
 	movq	%rax, %rdi
 	call	free
-	.loc 3 386 0
-	movl	$0, %eax
 	.loc 3 387 0
-	leave
+	movl	$0, %eax
+	.loc 3 388 0
+	addq	$336, %rsp
+	popq	%rbx
+	popq	%r12
+	popq	%r13
+	popq	%r14
+	popq	%rbp
 	.cfi_def_cfa 7, 8
 	ret
 	.cfi_endproc
@@ -3001,7 +3028,7 @@ main:
 	.file 8 "structures.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0xbe3
+	.long	0xbe6
 	.value	0x4
 	.long	.Ldebug_abbrev0
 	.byte	0x8
@@ -4175,7 +4202,7 @@ main:
 	.quad	.LFE11-.LFB11
 	.uleb128 0x1
 	.byte	0x9c
-	.long	0xb87
+	.long	0xb8a
 	.uleb128 0x13
 	.long	.LASF116
 	.byte	0x3
@@ -4183,15 +4210,15 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -324
+	.sleb128 -356
 	.uleb128 0x13
 	.long	.LASF117
 	.byte	0x3
 	.byte	0x10
-	.long	0xb87
+	.long	0xb8a
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -336
+	.sleb128 -368
 	.uleb128 0x16
 	.string	"i"
 	.byte	0x3
@@ -4199,7 +4226,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -320
+	.sleb128 -352
 	.uleb128 0x16
 	.string	"j"
 	.byte	0x3
@@ -4207,7 +4234,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -316
+	.sleb128 -348
 	.uleb128 0x16
 	.string	"k"
 	.byte	0x3
@@ -4215,7 +4242,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -312
+	.sleb128 -344
 	.uleb128 0x16
 	.string	"l"
 	.byte	0x3
@@ -4223,7 +4250,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -308
+	.sleb128 -340
 	.uleb128 0x14
 	.long	.LASF118
 	.byte	0x3
@@ -4231,7 +4258,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -288
+	.sleb128 -320
 	.uleb128 0x14
 	.long	.LASF119
 	.byte	0x3
@@ -4239,7 +4266,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -276
+	.sleb128 -308
 	.uleb128 0x16
 	.string	"Np"
 	.byte	0x3
@@ -4247,7 +4274,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -284
+	.sleb128 -316
 	.uleb128 0x14
 	.long	.LASF120
 	.byte	0x3
@@ -4255,7 +4282,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -280
+	.sleb128 -312
 	.uleb128 0x16
 	.string	"ii"
 	.byte	0x3
@@ -4263,7 +4290,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -304
+	.sleb128 -336
 	.uleb128 0x16
 	.string	"jj"
 	.byte	0x3
@@ -4271,7 +4298,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -300
+	.sleb128 -332
 	.uleb128 0x16
 	.string	"kk"
 	.byte	0x3
@@ -4279,7 +4306,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -296
+	.sleb128 -328
 	.uleb128 0x16
 	.string	"xc"
 	.byte	0x3
@@ -4287,7 +4314,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -232
+	.sleb128 -264
 	.uleb128 0x16
 	.string	"yc"
 	.byte	0x3
@@ -4295,7 +4322,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -224
+	.sleb128 -256
 	.uleb128 0x16
 	.string	"zc"
 	.byte	0x3
@@ -4303,7 +4330,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -216
+	.sleb128 -248
 	.uleb128 0x16
 	.string	"xp"
 	.byte	0x3
@@ -4311,7 +4338,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -208
+	.sleb128 -240
 	.uleb128 0x16
 	.string	"yp"
 	.byte	0x3
@@ -4319,7 +4346,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -200
+	.sleb128 -232
 	.uleb128 0x16
 	.string	"zp"
 	.byte	0x3
@@ -4327,7 +4354,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -192
+	.sleb128 -224
 	.uleb128 0x16
 	.string	"vxp"
 	.byte	0x3
@@ -4335,7 +4362,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -184
+	.sleb128 -216
 	.uleb128 0x16
 	.string	"vyp"
 	.byte	0x3
@@ -4343,7 +4370,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -176
+	.sleb128 -208
 	.uleb128 0x16
 	.string	"vzp"
 	.byte	0x3
@@ -4351,7 +4378,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -168
+	.sleb128 -200
 	.uleb128 0x1e
 	.long	.LASF121
 	.byte	0x3
@@ -4364,7 +4391,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -160
+	.sleb128 -192
 	.uleb128 0x14
 	.long	.LASF123
 	.byte	0x3
@@ -4372,7 +4399,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -152
+	.sleb128 -184
 	.uleb128 0x14
 	.long	.LASF124
 	.byte	0x3
@@ -4380,7 +4407,7 @@ main:
 	.long	0x8f
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -264
+	.sleb128 -296
 	.uleb128 0x16
 	.string	"pf"
 	.byte	0x3
@@ -4388,7 +4415,7 @@ main:
 	.long	0x65c
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -256
+	.sleb128 -288
 	.uleb128 0x14
 	.long	.LASF125
 	.byte	0x3
@@ -4396,7 +4423,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -248
+	.sleb128 -280
 	.uleb128 0x14
 	.long	.LASF126
 	.byte	0x3
@@ -4404,7 +4431,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -272
+	.sleb128 -304
 	.uleb128 0x14
 	.long	.LASF127
 	.byte	0x3
@@ -4412,7 +4439,7 @@ main:
 	.long	0x62
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -292
+	.sleb128 -324
 	.uleb128 0x14
 	.long	.LASF128
 	.byte	0x3
@@ -4420,7 +4447,7 @@ main:
 	.long	0x553
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -144
+	.sleb128 -176
 	.uleb128 0x14
 	.long	.LASF129
 	.byte	0x3
@@ -4428,7 +4455,7 @@ main:
 	.long	0x553
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -112
+	.sleb128 -144
 	.uleb128 0x14
 	.long	.LASF130
 	.byte	0x3
@@ -4436,7 +4463,7 @@ main:
 	.long	0x2a6
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -240
+	.sleb128 -272
 	.uleb128 0x14
 	.long	.LASF131
 	.byte	0x3
@@ -4444,31 +4471,31 @@ main:
 	.long	0x553
 	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -80
+	.sleb128 -112
 	.uleb128 0x14
 	.long	.LASF132
 	.byte	0x3
 	.byte	0x1e
 	.long	0x553
-	.uleb128 0x2
+	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -48
+	.sleb128 -80
 	.uleb128 0x14
 	.long	.LASF133
 	.byte	0x3
 	.byte	0x1f
 	.long	0x553
-	.uleb128 0x2
+	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -48
+	.sleb128 -80
 	.uleb128 0x14
 	.long	.LASF134
 	.byte	0x3
 	.byte	0x1f
 	.long	0x553
-	.uleb128 0x2
+	.uleb128 0x3
 	.byte	0x91
-	.sleb128 -48
+	.sleb128 -80
 	.byte	0
 	.uleb128 0x6
 	.byte	0x8
@@ -4485,7 +4512,7 @@ main:
 	.long	.LASF135
 	.byte	0x8
 	.byte	0x28
-	.long	0xbb6
+	.long	0xbb9
 	.uleb128 0x9
 	.byte	0x3
 	.quad	part
