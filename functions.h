@@ -9,13 +9,15 @@
  *  returns: Total number of particles stored in the binary file.
  */
 
-double randr(double A_range){
+double randr(double A_range)
+{
   double scaled = (double)rand()/RAND_MAX;
-
+  
   return -A_range + 2.0*A_range*scaled;
 }
 
-int readGADGETBinaryFile(){
+int readGADGETBinaryFile()
+{
   FILE *fdata = NULL;
   int i, j;
   int N_tot, N_min, N_max, dummy, nread=0;

@@ -81,7 +81,8 @@ int write_binary(void)
   double momentum_aux[3];
   FILE *outFile=NULL;
   //outFile = fopen("./../../Processed_data/CIC_DenCon_field_256.bin", "w");
-  outFile = fopen("./../../Processed_data/CIC_vel_field_test256.bin", "w");
+  //outFile = fopen("./../../Processed_data/CIC_vel_field_test256.bin", "w")
+  outFile = fopen("./../../Processed_data/CIC_DenCon_vels_noperiodic_256.bin", "w");;
   
   /*+++++ Saving Simulation parameters +++++*/
   fwrite(&GV.L, sizeof(double), 1, outFile);  //Box Size

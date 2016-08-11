@@ -3316,13 +3316,15 @@ struct Cell{
 # 13 "CIC_noperiodic.c" 2
 # 1 "functions.h" 1
 # 12 "functions.h"
-double randr(double A_range){
+double randr(double A_range)
+{
   double scaled = (double)rand()/2147483647;
 
   return -A_range + 2.0*A_range*scaled;
 }
 
-int readGADGETBinaryFile(){
+int readGADGETBinaryFile()
+{
   FILE *fdata = ((void *)0);
   int i, j;
   int N_tot, N_min, N_max, dummy, nread=0;
@@ -3398,7 +3400,7 @@ int readGADGETBinaryFile(){
     part[i].vely = faux[1];
     part[i].velz = faux[2];
   }
-# 104 "functions.h"
+# 106 "functions.h"
   nread=fread(&dummy, sizeof(dummy), 1, fdata);
   if(dummy != (3*N_tot*sizeof(float))){
     printf(" Can not read properly ids %d %lu\n", dummy, 3*N_tot*sizeof(float));
@@ -3444,10 +3446,10 @@ int readGADGETBinaryFile(){
   fclose(fdata);
   return N_tot;
 }
-# 165 "functions.h"
+# 167 "functions.h"
 double W(double x, double y, double z, double H){
   double Wx, Wy, Wz;
-# 215 "functions.h"
+# 217 "functions.h"
   if( fabs(x) <= H )
     {
       Wx = 1.0 - fabs(x)/H;
@@ -3474,7 +3476,7 @@ double W(double x, double y, double z, double H){
     {
       Wz = 0.0;
     }
-# 287 "functions.h"
+# 289 "functions.h"
   return Wx * Wy * Wz;
 
 
@@ -3482,7 +3484,7 @@ double W(double x, double y, double z, double H){
 
 
 }
-# 308 "functions.h"
+# 310 "functions.h"
 void locateCell(double xp, double yp, double zp, int indexPartArray, struct Cell *cells){
 
 
@@ -3503,7 +3505,7 @@ void locateCell(double xp, double yp, double zp, int indexPartArray, struct Cell
   cells[n].id_part = (long int*) realloc(cells[n].id_part, cells[n].Np_cell*sizeof(long int));
   cells[n].id_part[cells[n].Np_cell-1] = indexPartArray;
 }
-# 341 "functions.h"
+# 343 "functions.h"
 int mod(int a, int b)
 {
   int mod = a%b;
@@ -3580,7 +3582,8 @@ int write_binary(void)
   double momentum_aux[3];
   FILE *outFile=((void *)0);
 
-  outFile = fopen("./../../Processed_data/CIC_vel_field_test256.bin", "w");
+
+  outFile = fopen("./../../Processed_data/CIC_DenCon_vels_noperiodic_256.bin", "w");;
 
 
   fwrite(&GV.L, sizeof(double), 1, outFile);
@@ -3613,7 +3616,7 @@ int write_binary(void)
   fclose(outFile);
   return 0;
 }
-# 126 "readWrite.h"
+# 127 "readWrite.h"
 int write_binary_parts(void)
 {
   int i, nread;
